@@ -1,22 +1,32 @@
 package Felulet;
 
+import Mukodes.Babu;
 import Mukodes.Palya;
 import Mukodes.Mezo;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Magának a játéktáblának a panele
  */
 public class TablaPanel extends JPanel {
-    private JPanel ujpanel;
+
     private Palya palya = new Palya();
+
+    private Babu kivalasztottBabu;
 
     TablaPanel() {
         setLayout(new GridLayout(8, 8));
         setBounds(300,20,800,800);
 
+        /*
+            Kezdő pozíció
+         */
+        JPanel ujpanel;
         int sor = 1;
+
         for(int i= 0; i <=63; i++) {
             if (i % 8 == 0)
                 sor++;
@@ -27,11 +37,11 @@ public class TablaPanel extends JPanel {
             else{
                 for (Mezo m : palya.getMezok()) {
                     if ((i + 1) == ((m.getSor() - 1) * 8 + m.getOszlop())) {
+                        m.getMezoPanel().addMouseListener(new egerListener());
                         add(m.getMezoPanel());
                     }
                 }
             }
-
         }
 
         /*
@@ -67,6 +77,28 @@ public class TablaPanel extends JPanel {
 
          */
 
+    }
+
+    private class egerListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            //Component component = e.getComponent();
+            JPanel mezoPanel = (JPanel) e.getComponent();
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {}
+
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+
+        @Override
+        public void mouseExited(MouseEvent e) {}
     }
 
 }

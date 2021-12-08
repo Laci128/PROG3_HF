@@ -61,22 +61,7 @@ public class Palya {
                 mezok.add(uj_mezo);
             }
         }
-        /*
-        for (int x = 2; x <= 8; x += 2) {
-            for (int y = 2; y <= 8; y += 2) {
-                Mezo uj_mezo = new Mezo(x, y);
-                if(x <=3) {
-                    uj_mezo.setBabu(feherBabu);
-                    uj_mezo.getMezoPanel().add(feherBabu.getBabuLabel());
-                }
 
-                if(x >= 6) {
-                    uj_mezo.setBabu(feketeBabu);
-                    uj_mezo.getMezoPanel().add(feketeBabu.getBabuLabel());
-                }
-                mezok.add(uj_mezo);
-            }
-        }*/
         //
         //Szomszédok beállítása
         //
