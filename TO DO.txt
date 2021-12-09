@@ -2,11 +2,11 @@
 *********FELULET*********
 ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konstruktor eleje?
 
-
+-Jelenlegi Jatekos???
 
 
 *********MUKODES*********
-
+-Jelenlegi Jatekos???
 
 -Szélső Mezők (első és utolsó sor)
     Babu.Lep->mező.ráléptek, bábu színe és szélső-e a mező
