@@ -38,13 +38,32 @@ public class Babu {
 
     public boolean Lep(Mezo m){
         if(jelenlegi_mezo.getSzomszedok().contains(m) && m.getBabu() == null){
-            jelenlegi_mezo.setBabu(null);
-            jelenlegi_mezo = m;
-            m.setBabu(this);
-            return true;
+            if(szin.equals("feher")){
+                if(m.getSor() - jelenlegi_mezo.getSor() == 1){
+                    jelenlegi_mezo.setBabu(null);
+                    jelenlegi_mezo = m;
+                    m.setBabu(this);
+                    return true;
+                }
+                else
+                    return false;
+            }
+            else{
+                if(szin.equals("fekete")) {
+                    if (m.getSor() - jelenlegi_mezo.getSor() == -1) {
+                        jelenlegi_mezo.setBabu(null);
+                        jelenlegi_mezo = m;
+                        m.setBabu(this);
+                        return true;
+                    } else
+                        return false;
+                }
+            }
         }
-        else
+        else{
             return false;
+        }
+        return false;
     }
 
 
