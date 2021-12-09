@@ -14,8 +14,8 @@ import java.awt.event.MouseListener;
 public class TablaPanel extends JPanel {
 
     private Palya palya = new Palya();
-
     private Babu kivalasztottBabu;
+    private JLabel jelenlegi_jatekos = new JLabel("feher");
 
     TablaPanel() {
         setLayout(new GridLayout(8, 8));
@@ -61,7 +61,8 @@ public class TablaPanel extends JPanel {
 
         /*
          ******************RANDOM KIIRATASOK**************************
-
+        */
+        /*
         for (Mezo m : palya.getMezok()) {
             int szam = (m.getSor() - 1) * 8 + m.getOszlop();
             System.out.print(szam + " ");
@@ -104,9 +105,7 @@ public class TablaPanel extends JPanel {
     private class egerLabelListener implements MouseListener {
 
         @Override
-        public void mouseClicked(MouseEvent e) {                //Martin Label-höz adja hozzá
-            //TablaUpdate();
-            //Component component = e.getComponent();
+        public void mouseClicked(MouseEvent e) {
             JLabel klikkeltLabel = (JLabel) e.getComponent();
 
             JPanel labelPanele = new JPanel();
@@ -120,27 +119,26 @@ public class TablaPanel extends JPanel {
                         sorszam = i;
                         break;
                     }
-
                 }
             }
 
             for (Mezo m : palya.getMezok()) {
                 if(sorszam != -1 && (sorszam +1) == m.Mezoszam()) {
-                    if(kivalasztottBabu != null)
-                        kivalasztottBabu.getJelenlegi_mezo().getMezoPanel().setBackground(new Color(245,245,245));
-                    m.getMezoPanel().setBackground(Color.CYAN);   //teszthez
-                    kivalasztottBabu = m.getBabu();
+                    if(kivalasztottBabu == null || kivalasztottBabu.getSzin().equals(jelenlegi_jatekos.getText())) {
+                        if(kivalasztottBabu != null)
+                            kivalasztottBabu.getJelenlegi_mezo().getMezoPanel().setBackground(new Color(245, 245, 245));
+                        if (m.getBabu().getSzin().equals(jelenlegi_jatekos.getText())) {
+                            kivalasztottBabu = m.getBabu();
+                            m.getMezoPanel().setBackground(new Color(245, 245, 245));
+                            m.getMezoPanel().setBackground(Color.CYAN);
+                            kivalasztottBabu = m.getBabu();
+                        }
+                        else
+                            return;
+                    }
+                break;
                 }
             }
-
-
-            //JLabel babuLabel = (JLabel) e.getComponent();
-            //babuLabel.setBackground(Color.CYAN);
-
-            //ez működik:
-            //JPanel babuLabel = (JPanel) e.getComponent();
-            //babuLabel.setBackground(Color.CYAN);
-
         }
 
         @Override
@@ -175,21 +173,30 @@ public class TablaPanel extends JPanel {
             for (Mezo m : palya.getMezok()) {
                 if(sorszam != -1 && (sorszam +1) == m.Mezoszam()) {
                     //m.getMezoPanel().setBackground(Color.RED);   //teszthez
-                    Mezo jelenlegiMezo = kivalasztottBabu.getJelenlegi_mezo();
-
-                    //jelenlegiMezo.getMezoPanel().setBackground(new Color(245,245,245));
-                    //m.getMezoPanel().setBackground(Color.CYAN);
-                    //jelenlegiMezo.getMezoPanel().remove(kivalasztottBabu.getBabuLabel());
-                    //jelenlegiMezo.getMezoPanel().revalidate();
-                    //jelenlegiMezo.getMezoPanel().repaint();
-                    if(kivalasztottBabu.Lep(m)) {
-                        jelenlegiMezo.getMezoPanel().setBackground(new Color(245,245,245));
-                        m.getMezoPanel().setBackground(Color.CYAN);
-                        jelenlegiMezo.getMezoPanel().remove(kivalasztottBabu.getBabuLabel());
-                        jelenlegiMezo.getMezoPanel().revalidate();
-                        jelenlegiMezo.getMezoPanel().repaint();
-                        m.getMezoPanel().add(kivalasztottBabu.getBabuLabel());  //nem csinál semmit, lehet csak úgy látszik
+                    Mezo jelenlegiMezo;
+                    if (kivalasztottBabu == null) {
+                        return;
                     }
+                    if(kivalasztottBabu.getSzin().equals(jelenlegi_jatekos.getText())) {
+                        jelenlegiMezo = kivalasztottBabu.getJelenlegi_mezo();
+                        if (kivalasztottBabu.Lep(m)) {
+                            jelenlegiMezo.getMezoPanel().setBackground(new Color(245, 245, 245));
+                            m.getMezoPanel().setBackground(Color.CYAN);
+                            jelenlegiMezo.getMezoPanel().remove(kivalasztottBabu.getBabuLabel());
+                            jelenlegiMezo.getMezoPanel().revalidate();
+                            //jelenlegiMezo.getMezoPanel().repaint();
+                            m.getMezoPanel().add(kivalasztottBabu.getBabuLabel());
+                            if(kivalasztottBabu.getSzin().equals("feher"))
+                                jelenlegi_jatekos.setText("fekete");
+                            else
+                                jelenlegi_jatekos.setText("feher");
+                            kivalasztottBabu.getJelenlegi_mezo().getMezoPanel().setBackground(new Color(245, 245, 245));
+                            kivalasztottBabu = null;
+                        }
+                    }
+                    else
+                        return;
+                    return;
                 }
             }
 
@@ -216,5 +223,13 @@ public class TablaPanel extends JPanel {
 
     public void setPalya(Palya palya) {
         this.palya = palya;
+    }
+
+    public JLabel getJelenlegi_jatekos() {
+        return jelenlegi_jatekos;
+    }
+
+    public void setJelenlegi_jatekos(JLabel jelenlegi_jatekos) {
+        this.jelenlegi_jatekos = jelenlegi_jatekos;
     }
 }

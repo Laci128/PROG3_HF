@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
  */
 public class DamaFrame extends JFrame {
     private TablaPanel tabla;
+    private JLabel jelenlegiJatekosLabel = new JLabel();
 
     public DamaFrame(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,6 +24,7 @@ public class DamaFrame extends JFrame {
         getContentPane().add(pane);
 
         tabla = new TablaPanel();
+        jelenlegiJatekosLabel = tabla.getJelenlegi_jatekos();
 
         JButton mentes = new JButton("Játékállás mentése");
         JButton dontetlen = new JButton("Kiegyezés döntetlenben");
@@ -78,7 +80,7 @@ public class DamaFrame extends JFrame {
         jelenlegiJatekosLabel.setText(jelenlegi_j);
     }
 
-    private JLabel jelenlegiJatekosLabel = new JLabel();
+
 
 
 }
