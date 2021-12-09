@@ -33,12 +33,14 @@ public class Palya {
                     feherBabu = new Babu("feher");
                     uj_mezo.setBabu(feherBabu);
                     uj_mezo.getMezoPanel().add(feherBabu.getBabuLabel());
+                    feherBabu.setJelenlegi_mezo(uj_mezo);
                 }
 
                 if(SOR >= 6) {
                     feketeBabu = new Babu("fekete");
                     uj_mezo.setBabu(feketeBabu);
                     uj_mezo.getMezoPanel().add(feketeBabu.getBabuLabel());
+                    feketeBabu.setJelenlegi_mezo(uj_mezo);
                 }
                 mezok.add(uj_mezo);
             }
@@ -51,12 +53,14 @@ public class Palya {
                     feherBabu = new Babu("feher");
                     uj_mezo.setBabu(feherBabu);
                     uj_mezo.getMezoPanel().add(feherBabu.getBabuLabel());
+                    feherBabu.setJelenlegi_mezo(uj_mezo);
                 }
 
                 if(SOR >= 6) {
                     feketeBabu = new Babu("fekete");
                     uj_mezo.setBabu(feketeBabu);
                     uj_mezo.getMezoPanel().add(feketeBabu.getBabuLabel());
+                    feketeBabu.setJelenlegi_mezo(uj_mezo);
                 }
                 mezok.add(uj_mezo);
             }

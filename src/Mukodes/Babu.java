@@ -41,6 +41,8 @@ public class Babu {
             jelenlegi_mezo.setBabu(null);
             jelenlegi_mezo = m;
             m.setBabu(this);
+            //m.getBabu().setBabuLabel(babuLabel);  //nem csinál semmit, lehet csak úgy látszik
+            //babuLabel = null;
         }
     }
 
@@ -65,6 +67,13 @@ public class Babu {
         this.babuLabel = babuLabel;
     }
 
+    public void setJelenlegi_mezo(Mezo jelenlegi_mezo) {
+        this.jelenlegi_mezo = jelenlegi_mezo;
+    }
+
+    public Mezo getJelenlegi_mezo() {
+        return jelenlegi_mezo;
+    }
 
 
 }

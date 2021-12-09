@@ -1,14 +1,18 @@
 package Felulet;
 
-import com.sun.security.auth.module.JndiLoginModule;
+import Mukodes.Mezo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * A teljes Dáma játék kerete
  */
 public class DamaFrame extends JFrame {
+    private TablaPanel tabla;
+
     public DamaFrame(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Dáma");
@@ -18,7 +22,20 @@ public class DamaFrame extends JFrame {
         JLayeredPane pane = new JLayeredPane();
         getContentPane().add(pane);
 
-        TablaPanel tabla = new TablaPanel();
+        tabla = new TablaPanel();
+      /*  int sor = 1;
+        for(int i= 0; i <=63; i++) {
+            if (i % 8 == 0)
+                sor++;
+            if ((i + sor) % 2 == 0) {
+                for (Mezo m : tabla.getPalya().getMezok()) {
+                    if ((i + 1) == ((m.getSor() - 1) * 8 + m.getOszlop())) {
+                        m.getMezoPanel().addMouseListener(new egerListener());
+                        add(m.getMezoPanel());
+                    }
+                }
+            }
+        }*/
 
         JButton mentes = new JButton("Játékállás mentése");
         JButton dontetlen = new JButton("Kiegyezés döntetlenben");
@@ -68,10 +85,6 @@ public class DamaFrame extends JFrame {
         pane.add(passz,JLayeredPane.DEFAULT_LAYER);
         pane.add(labelPanel,JLayeredPane.DEFAULT_LAYER);
 
-
-
-
-
     }
 
     public void setJelenlegiJatekosLabel(String jelenlegi_j) {
@@ -80,4 +93,39 @@ public class DamaFrame extends JFrame {
 
     private JLabel jelenlegiJatekosLabel = new JLabel();
 
+   /* protected class egerListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {                //MARTIN: Label-höz adja hozzá
+            Component component = e.getComponent();
+
+            int sorszam;
+            for(int i= 0; i <=63; i++) {
+                if(component.equals(tabla.getComponent(i)))
+                    sorszam = i;
+            }
+
+
+            //JLabel babuLabel = (JLabel) e.getComponent();
+            //babuLabel.setBackground(Color.CYAN);
+
+            //ez működik:
+            //JPanel babuLabel = (JPanel) e.getComponent();
+            //babuLabel.setBackground(Color.CYAN);
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {}
+
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+
+        @Override
+        public void mouseExited(MouseEvent e) {}
+    }
+*/
 }

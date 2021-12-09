@@ -22,7 +22,7 @@ public class Mezo {
     Integer Oszlop;
 
     /**
-     * A Mezo szomszédai egy szimpla tömbben eltárolva.
+     * A Mezo szomszédai.
      */
     private List<Mezo> szomszedok = new ArrayList<Mezo>();
 
@@ -101,4 +101,6 @@ public class Mezo {
     public void setMezoPanel(JPanel mezoPanel) {
         this.mezoPanel = mezoPanel;
     }
+
+
 }
