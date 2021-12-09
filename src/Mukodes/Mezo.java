@@ -45,6 +45,10 @@ public class Mezo {
         mezoPanel.setBackground(new Color(245,245,245));
     }
 
+    public int Mezoszam(){
+        return (Sor - 1) * 8 + Oszlop;
+    }
+
     /**
      * A babu setter függvénye
      * @param b Babu amit a Mezore akarunk tenni

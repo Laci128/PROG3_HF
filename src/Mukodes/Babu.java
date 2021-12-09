@@ -36,15 +36,18 @@ public class Babu {
     }
 
 
-    public void Lep(Mezo m){
-        if(jelenlegi_mezo.getSzomszedok().contains(m) || m.getBabu() == null){
+    public boolean Lep(Mezo m){
+        if(jelenlegi_mezo.getSzomszedok().contains(m) && m.getBabu() == null){
             jelenlegi_mezo.setBabu(null);
             jelenlegi_mezo = m;
             m.setBabu(this);
-            //m.getBabu().setBabuLabel(babuLabel);  //nem csinál semmit, lehet csak úgy látszik
-            //babuLabel = null;
+            return true;
         }
+        else
+            return false;
     }
+
+
 
     public void Ugrik(){
 

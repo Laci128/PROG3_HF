@@ -74,9 +74,10 @@ public class Palya {
             for (Mezo sz : mezok) {
                 if ((Math.abs(m.getSor() - sz.getSor())) == 1) {
                     if ((Math.abs(m.getOszlop() - sz.getOszlop())) == 1)
-                        m.setSzomszedok(temp_szomszedok);
+                        temp_szomszedok.add(sz);
                 }
             }
+            m.setSzomszedok(temp_szomszedok);
         }
     }
 

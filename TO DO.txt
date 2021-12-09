@@ -1,11 +1,13 @@
 
-***FELULET***
--kirajzolás frissítő Listener maybe?
-    gyakorlatilag a TablaPanel konstruktor eleje?
--jelölt ciánkék
+*********FELULET*********
+ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konstruktor eleje?
 
 
-***MUKODES***
+
+
+*********MUKODES*********
+
+
 -Szélső Mezők (első és utolsó sor)
     Babu.Lep->mező.ráléptek, bábu színe és szélső-e a mező
 -szomszédok: balfelső, stb...??
