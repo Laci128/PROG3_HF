@@ -2,12 +2,16 @@
 *********FELULET*********
 ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konstruktor eleje?
 
--Jelenlegi Jatekos???
+
 
 
 *********MUKODES*********
--Jelenlegi Jatekos???
+
+-csak megfelelő irányba tudjon lépni
+
+    -szomszédok: balfelső, stb...??
+    -Mezőben két mező között lehet-e lépni? (Kiralynal lépnél kell csak talán)
 
 -Szélső Mezők (első és utolsó sor)
     Babu.Lep->mező.ráléptek, bábu színe és szélső-e a mező
--szomszédok: balfelső, stb...??
+
