@@ -1,11 +1,7 @@
 package Felulet;
 
-import Mukodes.Mezo;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * A teljes Dáma játék kerete
@@ -24,7 +20,7 @@ public class DamaFrame extends JFrame {
         getContentPane().add(pane);
 
         tabla = new TablaPanel();
-        jelenlegiJatekosLabel = tabla.getJelenlegi_jatekos();
+        jelenlegiJatekosLabel = tabla.getJelenlegiJatekos();
 
         JButton mentes = new JButton("Játékállás mentése");
         JButton dontetlen = new JButton("Kiegyezés döntetlenben");
@@ -39,6 +35,7 @@ public class DamaFrame extends JFrame {
         passz.setBounds(20,230,200,50);
         labelPanel.setBounds(20,340,200,50);
 
+        passz.addActionListener(tabla.passzGombListenerAdo());
 
         /*
             Pálya széli számok ás betűk

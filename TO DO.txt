@@ -6,12 +6,18 @@ ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konst
 
 
 *********MUKODES*********
+-Sima bábu ugrás visszafele is lehessen
 
--csak megfelelő irányba tudjon lépni
 
-    -szomszédok: balfelső, stb...??
-    -Mezőben két mező között lehet-e lépni? (Kiralynal lépnél kell csak talán)
 
 -Szélső Mezők (első és utolsó sor)
     Babu.Lep->mező.ráléptek, bábu színe és szélső-e a mező
 
+-Kiralynal lépnél kell: jelenlegiMezőről célMezőig el lehet-e lépkedni?
+        üres-e közte mindem
+        pl.: for ciklus addig amennyit kell lépni abban egyesével megnézni, hogy van-e babu
+
+
+*********DOKUMENTÁCIÓHOZ / SPECIFIKÁCIÓ MÓDOSÍTÁS*********
+-csak a FEHÉR mezőkön folyik a játékmenet
+-ugrás után előbb-utóbb passzolni kell

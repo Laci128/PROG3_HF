@@ -5,6 +5,8 @@ import Mukodes.Palya;
 import Mukodes.Mezo;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -14,8 +16,9 @@ import java.awt.event.MouseListener;
 public class TablaPanel extends JPanel {
 
     private Palya palya = new Palya();
+
     private Babu kivalasztottBabu;
-    private JLabel jelenlegi_jatekos = new JLabel("feher");
+    private JLabel jelenlegiJatekos = new JLabel("feher");
 
     TablaPanel() {
         setLayout(new GridLayout(8, 8));
@@ -86,6 +89,10 @@ public class TablaPanel extends JPanel {
         return this;
     }
 
+    public passzGombListener passzGombListenerAdo() {
+        return new passzGombListener();
+    }
+
     private void TablaUpdate(){    //Nem hiszem hogy kelleni fog
         int sor = 1;
         for(int i= 0; i <=63; i++) {
@@ -99,6 +106,15 @@ public class TablaPanel extends JPanel {
                 }
             }
         }
+    }
+
+    private void babutAthelyez(Mezo jelenlegiM, Mezo celM){
+        jelenlegiM.getMezoPanel().setBackground(new Color(245, 245, 245));
+        jelenlegiM.getMezoPanel().remove(kivalasztottBabu.getBabuLabel());
+        jelenlegiM.getMezoPanel().revalidate();
+        jelenlegiM.getMezoPanel().repaint();
+        celM.getMezoPanel().setBackground(Color.CYAN);
+        celM.getMezoPanel().add(kivalasztottBabu.getBabuLabel());
     }
 
 
@@ -122,21 +138,23 @@ public class TablaPanel extends JPanel {
                 }
             }
 
-            for (Mezo m : palya.getMezok()) {
-                if(sorszam != -1 && (sorszam +1) == m.Mezoszam()) {
-                    if(kivalasztottBabu == null || kivalasztottBabu.getSzin().equals(jelenlegi_jatekos.getText())) {
+            for (Mezo kivalasztottMezo : palya.getMezok()) {
+                if(sorszam != -1 && (sorszam +1) == kivalasztottMezo.Mezoszam()) {
+                    if(kivalasztottBabu == null || kivalasztottBabu.getSzin().equals(jelenlegiJatekos.getText())) {
+                        if(kivalasztottBabu != null && kivalasztottBabu.getUgrott() && kivalasztottBabu.getSzin().equals(jelenlegiJatekos.getText()))
+                            return;
                         if(kivalasztottBabu != null)
-                            kivalasztottBabu.getJelenlegi_mezo().getMezoPanel().setBackground(new Color(245, 245, 245));
-                        if (m.getBabu().getSzin().equals(jelenlegi_jatekos.getText())) {
-                            kivalasztottBabu = m.getBabu();
-                            m.getMezoPanel().setBackground(new Color(245, 245, 245));
-                            m.getMezoPanel().setBackground(Color.CYAN);
-                            kivalasztottBabu = m.getBabu();
+                            kivalasztottBabu.getJelenlegiMezo().getMezoPanel().setBackground(new Color(245, 245, 245));
+                        if (kivalasztottMezo.getBabu().getSzin().equals(jelenlegiJatekos.getText())) {
+                            kivalasztottBabu = kivalasztottMezo.getBabu();
+                            kivalasztottMezo.getMezoPanel().setBackground(new Color(245, 245, 245));
+                            kivalasztottMezo.getMezoPanel().setBackground(Color.CYAN);
+                            kivalasztottBabu = kivalasztottMezo.getBabu();
                         }
                         else
-                            return;
+                            break;
                     }
-                break;
+                return;
                 }
             }
         }
@@ -170,28 +188,53 @@ public class TablaPanel extends JPanel {
                     }
             }
 
-            for (Mezo m : palya.getMezok()) {
-                if(sorszam != -1 && (sorszam +1) == m.Mezoszam()) {
-                    //m.getMezoPanel().setBackground(Color.RED);   //teszthez
+            for (Mezo celMezo : palya.getMezok()) {
+                if(sorszam != -1 && (sorszam +1) == celMezo.Mezoszam()) {
+                    //celMezo.getMezoPanel().setBackground(Color.RED);   //teszthez
                     Mezo jelenlegiMezo;
-                    if (kivalasztottBabu == null) {
+                    Mezo atugrottMezo;
+                    if (kivalasztottBabu == null || kivalasztottBabu.getUgrott()){
                         return;
                     }
-                    if(kivalasztottBabu.getSzin().equals(jelenlegi_jatekos.getText())) {
-                        jelenlegiMezo = kivalasztottBabu.getJelenlegi_mezo();
-                        if (kivalasztottBabu.Lep(m)) {
-                            jelenlegiMezo.getMezoPanel().setBackground(new Color(245, 245, 245));
-                            m.getMezoPanel().setBackground(Color.CYAN);
-                            jelenlegiMezo.getMezoPanel().remove(kivalasztottBabu.getBabuLabel());
-                            jelenlegiMezo.getMezoPanel().revalidate();
-                            //jelenlegiMezo.getMezoPanel().repaint();
-                            m.getMezoPanel().add(kivalasztottBabu.getBabuLabel());
-                            if(kivalasztottBabu.getSzin().equals("feher"))
-                                jelenlegi_jatekos.setText("fekete");
-                            else
-                                jelenlegi_jatekos.setText("feher");
-                            kivalasztottBabu.getJelenlegi_mezo().getMezoPanel().setBackground(new Color(245, 245, 245));
-                            kivalasztottBabu = null;
+                    if(kivalasztottBabu.getSzin().equals(jelenlegiJatekos.getText())) {
+                        jelenlegiMezo = kivalasztottBabu.getJelenlegiMezo();
+                        if(kivalasztottBabu.getJelenlegiMezo().getSzomszedok().contains(celMezo)) {
+                            if (kivalasztottBabu.Lep(celMezo)) {
+                                babutAthelyez(jelenlegiMezo,celMezo);
+                                if (kivalasztottBabu.getSzin().equals("feher"))
+                                    jelenlegiJatekos.setText("fekete");
+                                else
+                                    jelenlegiJatekos.setText("feher");
+                                kivalasztottBabu.getJelenlegiMezo().getMezoPanel().setBackground(new Color(245, 245, 245));
+                                kivalasztottBabu = null;
+                            }
+                        }
+                        else {
+                            atugrottMezo = kivalasztottBabu.Ugrik(celMezo);
+                            if (atugrottMezo != null){
+                                babutAthelyez(jelenlegiMezo,celMezo);
+
+                                atugrottMezo.getMezoPanel().setBackground(new Color(245, 245, 245));
+                                atugrottMezo.getMezoPanel().remove(atugrottMezo.getBabu().getBabuLabel());
+                                atugrottMezo.getMezoPanel().revalidate();
+                                atugrottMezo.getMezoPanel().repaint();
+                                atugrottMezo.setBabu(null);
+
+                            }
+                            else{
+                                if(kivalasztottBabu.getUgrott()){
+                                    if (kivalasztottBabu.getSzin().equals("feher"))
+                                        jelenlegiJatekos.setText("fekete");
+                                    else
+                                        jelenlegiJatekos.setText("feher");
+                                    kivalasztottBabu.getJelenlegiMezo().getMezoPanel().setBackground(new Color(245, 245, 245));
+                                    kivalasztottBabu.setUgrott(false);
+                                    kivalasztottBabu = null;
+                                }
+                                else {
+                                    return;
+                                }
+                            }
                         }
                     }
                     else
@@ -199,9 +242,6 @@ public class TablaPanel extends JPanel {
                     return;
                 }
             }
-
-
-
         }
 
         @Override
@@ -217,6 +257,21 @@ public class TablaPanel extends JPanel {
         public void mouseExited(MouseEvent e) {}
     }
 
+
+    private class passzGombListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(jelenlegiJatekos.getText().equals("feher")){
+                jelenlegiJatekos.setText("fekete");
+            }
+            else
+                jelenlegiJatekos.setText("feher");
+            kivalasztottBabu.getJelenlegiMezo().getMezoPanel().setBackground(new Color(245, 245, 245));
+            kivalasztottBabu = null;
+        }
+    }
+
     public Palya getPalya() {
         return palya;
     }
@@ -225,11 +280,11 @@ public class TablaPanel extends JPanel {
         this.palya = palya;
     }
 
-    public JLabel getJelenlegi_jatekos() {
-        return jelenlegi_jatekos;
+    public JLabel getJelenlegiJatekos() {
+        return jelenlegiJatekos;
     }
 
-    public void setJelenlegi_jatekos(JLabel jelenlegi_jatekos) {
-        this.jelenlegi_jatekos = jelenlegi_jatekos;
+    public void setJelenlegiJatekos(JLabel jelenlegiJatekos) {
+        this.jelenlegiJatekos = jelenlegiJatekos;
     }
 }

@@ -37,13 +37,15 @@ public class Kiraly extends Babu {
             new JLabel(new ImageIcon("resources/fekete_kiraly.png"));
     }
 
-    //@Override
-    //public boolean Lep(Mezo m) {
-
-    //}
-
+    /*
     @Override
-    public void Ugrik() {
+    public boolean Lep(Mezo m) {
 
     }
+
+    @Override
+    public boolean Ugrik() {
+
+    }
+    */
 }
