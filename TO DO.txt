@@ -6,8 +6,6 @@ ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konst
 
 
 *********MUKODES*********
--Sima bábu ugrás visszafele is lehessen
-
 
 
 -Szélső Mezők (első és utolsó sor)
@@ -20,4 +18,6 @@ ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konst
 
 *********DOKUMENTÁCIÓHOZ / SPECIFIKÁCIÓ MÓDOSÍTÁS*********
 -csak a FEHÉR mezőkön folyik a játékmenet
--ugrás után előbb-utóbb passzolni kell
+-ugrás után:
+    -lehet passzolni
+    -nem ugorható üres mezőre kattintva passzol

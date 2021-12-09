@@ -81,34 +81,28 @@ public class Babu {
         if(kozosSzomszedok[0] == null)
             return null;
 
-        if(szin.equals("feher")){
-            for (Mezo kozosMezo: kozosSzomszedok) {
-                if(celMezo.getSor() - jelenlegiMezo.getSor() == 2 && kozosMezo.getSor() - jelenlegiMezo.getSor() == 1){
-                    if((celMezo.getOszlop() - jelenlegiMezo.getOszlop() == 2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == 1)
-                        || (celMezo.getOszlop() - jelenlegiMezo.getOszlop() == -2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == -1)){
 
-                        if(kozosMezo.getBabu() != null && kozosMezo.getBabu().getSzin().equals("fekete")){
-                            //kozosMezo.getMezoPanel().remove(kozosMezo.getBabu().getBabuLabel());
-                            //kozosMezo.getMezoPanel().revalidate();
-                            //kozosMezo.setBabu(null);
-                            //atugrottMezo = kozosMezo;
-                            jelenlegiMezo.setBabu(null);
-                            jelenlegiMezo = celMezo;
-                            celMezo.setBabu(this);
-                            ugrott = true;
-                            return kozosMezo;
-                        }
-                        else
-                            return null;
-                    }
-                    else
+        for (Mezo kozosMezo: kozosSzomszedok) {
+            if ((celMezo.getSor() - jelenlegiMezo.getSor() == 2 && kozosMezo.getSor() - jelenlegiMezo.getSor() == 1)
+                || (celMezo.getSor() - jelenlegiMezo.getSor() == -2 && kozosMezo.getSor() - jelenlegiMezo.getSor() == -1)){
+                if ((celMezo.getOszlop() - jelenlegiMezo.getOszlop() == 2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == 1)
+                        || (celMezo.getOszlop() - jelenlegiMezo.getOszlop() == -2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == -1)) {
+
+                    if (kozosMezo.getBabu() != null && !kozosMezo.getBabu().getSzin().equals(szin)) {
+                        jelenlegiMezo.setBabu(null);
+                        jelenlegiMezo = celMezo;
+                        celMezo.setBabu(this);
+                        ugrott = true;
+                        return kozosMezo;
+                    } else
                         return null;
-                }
-                else
+                } else
                     return null;
-            }
+            } else
+                return null;
         }
-        else{
+
+        /*else{
             for (Mezo kozosMezo: kozosSzomszedok) {
                 if(celMezo.getSor() - jelenlegiMezo.getSor() == -2 && kozosMezo.getSor() - jelenlegiMezo.getSor() == -1){
                     if((celMezo.getOszlop() - jelenlegiMezo.getOszlop() == 2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == 1)
@@ -133,7 +127,7 @@ public class Babu {
                 else
                     return null;
             }
-        }
+        }*/
         return null;
     }
 
