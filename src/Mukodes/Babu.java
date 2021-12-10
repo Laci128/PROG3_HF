@@ -1,7 +1,6 @@
 package Mukodes;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  *
@@ -102,32 +101,6 @@ public class Babu {
                 return null;
         }
 
-        /*else{
-            for (Mezo kozosMezo: kozosSzomszedok) {
-                if(celMezo.getSor() - jelenlegiMezo.getSor() == -2 && kozosMezo.getSor() - jelenlegiMezo.getSor() == -1){
-                    if((celMezo.getOszlop() - jelenlegiMezo.getOszlop() == 2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == 1)
-                            || (celMezo.getOszlop() - jelenlegiMezo.getOszlop() == -2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == -1)){
-
-                        if(kozosMezo.getBabu() != null && kozosMezo.getBabu().getSzin().equals("feher")){
-
-                            //kozosMezo.setBabu(null);
-                            //atugrottMezo = kozosMezo;
-                            jelenlegiMezo.setBabu(null);
-                            jelenlegiMezo = celMezo;
-                            celMezo.setBabu(this);
-                            ugrott = true;
-                            return kozosMezo;
-                        }
-                        else
-                            return null;
-                    }
-                    else
-                        return null;
-                }
-                else
-                    return null;
-            }
-        }*/
         return null;
     }
 
@@ -138,6 +111,14 @@ public class Babu {
 
     public void setSzin(String szin) {
         this.szin = szin;
+    }
+
+    public Integer getErtek() {
+        return ertek;
+    }
+
+    public void setErtek(Integer ertek) {
+        this.ertek = ertek;
     }
 
     public JLabel getBabuLabel() {
@@ -163,4 +144,5 @@ public class Babu {
     public void setUgrott(Boolean ugrott) {
         this.ugrott = ugrott;
     }
+
 }

@@ -21,31 +21,94 @@ public class Kiraly extends Babu {
     /**
      * Mezo amelyen a Babu jelenleg tartózkodik.
      */
-    private Mezo jelenlegi_mezo;
+    private Mezo jelenlegiMezo;
 
     private JLabel babuLabel;
 
-
+    private Boolean ugrott = false;
 
 
     public Kiraly(String sz) {
         super(sz);
-        if(szin.equals("feher")){
+        szin = sz;
+        if(szin.equals("feher"))
             babuLabel = new JLabel(new ImageIcon("resources/feher_kiraly.png"));
+        else
+           babuLabel = new JLabel(new ImageIcon("resources/fekete_kiraly.png"));
+    }
+
+
+    @Override
+    //Bármerre EGYET léphet
+    public boolean Lep(Mezo m){
+        if(jelenlegiMezo.getSzomszedok().contains(m) && m.getBabu() == null) {
+            int sorTav = m.getSor() - jelenlegiMezo.getSor();
+            if (Math.abs(sorTav) == 1) {
+                jelenlegiMezo.setBabu(null);
+                jelenlegiMezo = m;
+                m.setBabu(this);
+                return true;
+            } else
+                return false;
         }
         else
-            new JLabel(new ImageIcon("resources/fekete_kiraly.png"));
+            return false;
     }
-
-    /*
-    @Override
-    public boolean Lep(Mezo m) {
-
-    }
-
+/*
     @Override
     public boolean Ugrik() {
 
     }
     */
+
+    @Override
+    public Integer getErtek() {
+        return ertek;
+    }
+
+    @Override
+    public void setErtek(Integer ertek) {
+        this.ertek = ertek;
+    }
+
+    @Override
+    public Boolean getUgrott() {
+        return ugrott;
+    }
+
+    @Override
+    public void setUgrott(Boolean ugrott) {
+        this.ugrott = ugrott;
+    }
+
+    @Override
+    public String getSzin() {
+        return szin;
+    }
+
+    @Override
+    public void setSzin(String szin) {
+        this.szin = szin;
+    }
+
+    @Override
+    public JLabel getBabuLabel() {
+        return babuLabel;
+    }
+
+    @Override
+    public void setBabuLabel(JLabel babuLabel) {
+        this.babuLabel = babuLabel;
+    }
+
+    @Override
+    public Mezo getJelenlegiMezo() {
+        return jelenlegiMezo;
+    }
+
+    @Override
+    public void setJelenlegiMezo(Mezo jelenlegiMezo) {
+        this.jelenlegiMezo = jelenlegiMezo;
+    }
+
 }

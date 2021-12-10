@@ -49,6 +49,35 @@ public class Mezo {
         return (Sor - 1) * 8 + Oszlop;
     }
 
+    public Babu KiralyLeszE(){
+        Kiraly kiraly;
+        if(babu.getSzin().equals("feher")){
+            if(Sor == 8){
+                mezoPanel.remove(babu.getBabuLabel());
+                kiraly = new Kiraly("feher");
+                babu = kiraly;
+                mezoPanel.add(kiraly.getBabuLabel());
+                kiraly.setJelenlegiMezo(this);
+                return babu;
+            }
+            else
+                return null;
+        }
+        if(babu.getSzin().equals("fekete")) {
+            if(Sor == 1){
+                mezoPanel.remove(babu.getBabuLabel());
+                kiraly = new Kiraly("fekete");
+                babu = kiraly;
+                mezoPanel.add(kiraly.getBabuLabel());
+                kiraly.setJelenlegiMezo(this);
+                return babu;
+            }
+            else
+                return null;
+        }
+        return null;
+    }
+
     /**
      * A babu setter függvénye
      * @param b Babu amit a Mezore akarunk tenni

@@ -7,11 +7,11 @@ ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konst
 
 *********MUKODES*********
 
+-Király:
+    -LÉP
+    -UGRIK
 
--Szélső Mezők (első és utolsó sor)
-    Babu.Lep->mező.ráléptek, bábu színe és szélső-e a mező
-
--Kiralynal lépnél kell: jelenlegiMezőről célMezőig el lehet-e lépkedni?
+-Mezőhöz: jelenlegiMezőről célMezőig el lehet-e lépkedni? (Kiralynal kell lépnél )
         üres-e közte mindem
         pl.: for ciklus addig amennyit kell lépni abban egyesével megnézni, hogy van-e babu
 
