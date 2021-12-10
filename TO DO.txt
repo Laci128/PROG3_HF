@@ -8,7 +8,9 @@ ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konst
 *********MUKODES*********
 
 -Király:
+    -ugrikures() ????
     -UGRIK
+
 
 
 -JátékVégeListener!!!!
