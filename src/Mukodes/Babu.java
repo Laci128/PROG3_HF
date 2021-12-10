@@ -149,4 +149,8 @@ public class Babu {
 
     public Palya getPalya() {return null;}
 
-}
+    public void setUresbenUgrott(Boolean uresbenUgrott) {}
+
+    public Boolean getUresbenUgrott() {return true;}
+
+    }

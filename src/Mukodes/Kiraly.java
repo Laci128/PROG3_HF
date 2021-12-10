@@ -29,6 +29,8 @@ public class Kiraly extends Babu {
 
     private Palya palya;
 
+    private Boolean uresbenUgrott = false;
+
 
     public Kiraly(String sz) {
         super(sz);
@@ -71,9 +73,73 @@ public class Kiraly extends Babu {
 
     @Override
     public Mezo Ugrik(Mezo celMezo){
+        Mezo[] kozosSzomszedok = new Mezo[2];
+        int index = 0;
+        for(Mezo mezo: celMezo.getSzomszedok()){
+            if(celMezo.getSzomszedok().contains(mezo) && jelenlegiMezo.getSzomszedok().contains(mezo)){
+                kozosSzomszedok[index] = mezo;
+                index++;
+            }
+        }
+        if(kozosSzomszedok[0] == null)
+            return null;
+
+        for (Mezo kozosMezo: kozosSzomszedok) {
+            if ((celMezo.getSor() - jelenlegiMezo.getSor() == 2 && kozosMezo.getSor() - jelenlegiMezo.getSor() == 1)
+                    || (celMezo.getSor() - jelenlegiMezo.getSor() == -2 && kozosMezo.getSor() - jelenlegiMezo.getSor() == -1)){
+                if ((celMezo.getOszlop() - jelenlegiMezo.getOszlop() == 2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == 1)
+                        || (celMezo.getOszlop() - jelenlegiMezo.getOszlop() == -2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == -1)) {
+
+
+                    boolean celMezoSzomszedBabuVanE = false;
+                    for(Mezo m: celMezo.getSzomszedok()){
+                        if(m.getBabu() != null){
+                            celMezoSzomszedBabuVanE = true;
+                            break;
+                        }
+                    }
+
+                    if(!ugrott && !uresbenUgrott && kozosMezo.getBabu() == null && celMezoSzomszedBabuVanE){
+                        jelenlegiMezo.setBabu(null);
+                        jelenlegiMezo = celMezo;
+                        celMezo.setBabu(this);
+                        uresbenUgrott = true;
+                        return kozosMezo;
+                    }
+                    //ugrott            false
+                    //uresbenUgrott     true
+
+                    if (!ugrott && kozosMezo.getBabu() != null && !kozosMezo.getBabu().getSzin().equals(szin)) {
+                        jelenlegiMezo.setBabu(null);
+                        jelenlegiMezo = celMezo;
+                        celMezo.setBabu(this);
+                        ugrott = true;
+                        uresbenUgrott = false;
+                        return kozosMezo;
+                    }
+                    //ugrott            true
+                    //uresbenUgrott     false
+
+                    if(ugrott && !uresbenUgrott && kozosMezo.getBabu() == null){
+                        jelenlegiMezo.setBabu(null);
+                        jelenlegiMezo = celMezo;
+                        celMezo.setBabu(this);
+                        uresbenUgrott = true;
+                        //ugrott = false;
+                        return kozosMezo;
+                    }
+                    //ugrott            true
+                    //uresbenUgrott     true
+
+                    return null;
+                } else
+                    return null;
+            } else
+                return null;
+        }
+
         return null;
     }
-
 
     @Override
     public Integer getErtek() {
@@ -133,5 +199,15 @@ public class Kiraly extends Babu {
     @Override
     public Palya getPalya() {
         return palya;
+    }
+
+    @Override
+    public void setUresbenUgrott(Boolean uresbenUgrott) {
+        this.uresbenUgrott = uresbenUgrott;
+    }
+
+    @Override
+    public Boolean getUresbenUgrott() {
+        return uresbenUgrott;
     }
 }
