@@ -114,6 +114,8 @@ public class TablaPanel extends JPanel {
             kivalasztottBabu.getJelenlegiMezo().getMezoPanel().revalidate();
             kivalasztottBabu.getJelenlegiMezo().getMezoPanel().repaint();
             kivalasztottBabu.getBabuLabel().addMouseListener(new egerLabelListener());
+
+            kivalasztottBabu.setPalya(palya);
             return true;
         }
         return false;
@@ -222,7 +224,7 @@ public class TablaPanel extends JPanel {
                     if(kivalasztottBabu.getSzin().equals(jelenlegiJatekos.getText())) {
                         jelenlegiMezo = kivalasztottBabu.getJelenlegiMezo();
                         //LÉP
-                        if(jelenlegiMezo.getSzomszedok().contains(celMezo)) {
+                        if(kivalasztottBabu.getErtek() == 5 || jelenlegiMezo.getSzomszedok().contains(celMezo)) {
                             if(kivalasztottBabu.getUgrott()) {
                                 passz();
                                 return;
@@ -231,10 +233,11 @@ public class TablaPanel extends JPanel {
                                 babutAthelyez(jelenlegiMezo,celMezo);
                                 KiralyLeszEFelulet();
                                 passz();
+                                return;
                             }
                         }
                         //UGRIK
-                        if(!jelenlegiMezo.getSzomszedok().contains(celMezo)) {
+                        if(kivalasztottBabu.getErtek() == 5 || !jelenlegiMezo.getSzomszedok().contains(celMezo)){
                             atugrottMezo = kivalasztottBabu.Ugrik(celMezo);
                             if (atugrottMezo != null){
                                 babutAthelyez(jelenlegiMezo,celMezo);

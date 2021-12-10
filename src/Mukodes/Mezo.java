@@ -78,6 +78,8 @@ public class Mezo {
         return null;
     }
 
+
+
     /**
      * A babu setter függvénye
      * @param b Babu amit a Mezore akarunk tenni

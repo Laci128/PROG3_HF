@@ -27,6 +27,8 @@ public class Kiraly extends Babu {
 
     private Boolean ugrott = false;
 
+    private Palya palya;
+
 
     public Kiraly(String sz) {
         super(sz);
@@ -37,7 +39,18 @@ public class Kiraly extends Babu {
            babuLabel = new JLabel(new ImageIcon("resources/fekete_kiraly.png"));
     }
 
-
+    @Override
+    public boolean Lep(Mezo m) {
+        if(palya.szabadEAzUt(jelenlegiMezo,m)){
+            jelenlegiMezo.setBabu(null);
+            jelenlegiMezo = m;
+            m.setBabu(this);
+            return true;
+        }
+        else
+            return false;
+    }
+/*
     @Override
     //Bármerre EGYET léphet
     public boolean Lep(Mezo m){
@@ -54,12 +67,13 @@ public class Kiraly extends Babu {
         else
             return false;
     }
-/*
-    @Override
-    public boolean Ugrik() {
-
-    }
     */
+
+    @Override
+    public Mezo Ugrik(Mezo celMezo){
+        return null;
+    }
+
 
     @Override
     public Integer getErtek() {
@@ -111,4 +125,13 @@ public class Kiraly extends Babu {
         this.jelenlegiMezo = jelenlegiMezo;
     }
 
+    @Override
+    public void setPalya(Palya palya) {
+        this.palya = palya;
+    }
+
+    @Override
+    public Palya getPalya() {
+        return palya;
+    }
 }

@@ -15,7 +15,7 @@ public class Palya {
      * A Palya mezői, a pálya 8x8-as de csak a mezők felét tárolom,
      * mert csak azon lépkednek a bábuk.
      */
-    //Csak a fehér mezők, SPECIFIKÁCIÓBAN ELÍTRTAM, FEKETÉT ÍRTAM
+    //Csak a fehér mezők, SPECIFIKÁCIÓBAN ELÍRTAM, FEKETÉT ÍRTAM
     private List<Mezo> mezok = new ArrayList<Mezo>();
 
     private List<Mezo> temp_szomszedok;
@@ -80,6 +80,75 @@ public class Palya {
             m.setSzomszedok(temp_szomszedok);
         }
     }
+
+    private boolean uresE(Mezo jelenlegiMezo, int sor, int oszlop){
+        Mezo vizsgaltMezo = null;
+        for(Mezo mezo: mezok){
+            if(mezo.getSor() == (jelenlegiMezo.getSor()+sor) && mezo.getOszlop() == (jelenlegiMezo.getOszlop())+oszlop)
+                vizsgaltMezo = mezo;
+        }
+        if(vizsgaltMezo != null && vizsgaltMezo.getBabu() == null)
+            return true;
+        else
+            return false;
+
+    }
+
+    public boolean szabadEAzUt(Mezo jelenlegiMezo,Mezo celMezo){
+        int sorTav = celMezo.getSor() - jelenlegiMezo.getSor();
+        int oszlopTav = celMezo.getOszlop() - jelenlegiMezo.getOszlop();
+
+        if(sorTav > 0 && oszlopTav > 0) {
+            int sor = 1;
+            int oszlop = 1;
+            while (sor < sorTav && oszlop < oszlopTav) {
+                if (!uresE(jelenlegiMezo, sor, oszlop))
+                    return false;
+                oszlop++;
+                sor++;
+            }
+            return true;
+        }
+
+        if(sorTav > 0 && oszlopTav < 0) {
+            int sor = 1;
+            int oszlop = -1;
+            while (sor < sorTav && oszlop > oszlopTav) {
+                if (!uresE(jelenlegiMezo, sor, oszlop))
+                    return false;
+                oszlop--;
+                sor++;
+            }
+            return true;
+        }
+
+        if(sorTav < 0 && oszlopTav > 0) {
+            int sor = -1;
+            int oszlop = 1;
+            while (sor > sorTav && oszlop < oszlopTav) {
+                if (!uresE(jelenlegiMezo, sor, oszlop))
+                    return false;
+                oszlop++;
+                sor--;
+            }
+            return true;
+        }
+
+        if(sorTav < 0 && oszlopTav < 0) {
+            int sor = -1;
+            int oszlop = 1;
+            while (sor > sorTav && oszlop > oszlopTav) {
+                if (!uresE(jelenlegiMezo, sor, oszlop))
+                    return false;
+                oszlop--;
+                sor--;
+            }
+            return true;
+        }
+
+        return false;
+    }
+
 
     public List<Mezo> getMezok() {
         return mezok;

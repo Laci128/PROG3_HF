@@ -145,4 +145,8 @@ public class Babu {
         this.ugrott = ugrott;
     }
 
+    public void setPalya(Palya palya) {}
+
+    public Palya getPalya() {return null;}
+
 }
