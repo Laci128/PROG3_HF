@@ -8,15 +8,12 @@ ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konst
 *********MUKODES*********
 
 -Király:
-    -LÉP
     -UGRIK
-
--Mezőhöz: jelenlegiMezőről célMezőig el lehet-e lépkedni? (Kiralynal kell lépnél )
-        üres-e közte mindem
-        pl.: for ciklus addig amennyit kell lépni abban egyesével megnézni, hogy van-e babu
 
 
 -JátékVégeListener!!!!
+
+-Szerializáció
 
 
 *********DOKUMENTÁCIÓHOZ / SPECIFIKÁCIÓ MÓDOSÍTÁS*********
