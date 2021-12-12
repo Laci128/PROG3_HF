@@ -93,7 +93,7 @@ public class Kiraly extends Babu {
 
                     boolean celMezoSzomszedBabuVanE = false;
                     for(Mezo m: celMezo.getSzomszedok()){
-                        if(m.getBabu() != null){
+                        if(m.getBabu() != null && m != kozosMezo){
                             celMezoSzomszedBabuVanE = true;
                             break;
                         }
@@ -109,7 +109,7 @@ public class Kiraly extends Babu {
                     //ugrott            false
                     //uresbenUgrott     true
 
-                    if (!ugrott && kozosMezo.getBabu() != null && !kozosMezo.getBabu().getSzin().equals(szin)) {
+                    if (kozosMezo.getBabu() != null && !kozosMezo.getBabu().getSzin().equals(szin)) {
                         jelenlegiMezo.setBabu(null);
                         jelenlegiMezo = celMezo;
                         celMezo.setBabu(this);
