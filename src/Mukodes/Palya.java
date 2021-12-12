@@ -1,7 +1,7 @@
 package Mukodes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.lang.Math;
 
 
@@ -10,18 +10,21 @@ import java.lang.Math;
 /**
  *  A teljes játék működését bonyolítja le.
  */
-public class Palya {
+public class Palya implements Serializable {
     /**
      * A Palya mezői, a pálya 8x8-as de csak a mezők felét tárolom,
      * mert csak azon lépkednek a bábuk.
      */
     //Csak a fehér mezők, SPECIFIKÁCIÓBAN ELÍRTAM, FEKETÉT ÍRTAM
-    private List<Mezo> mezok = new ArrayList<Mezo>();
+    private ArrayList<Mezo> mezok = new ArrayList<Mezo>();
 
-    private List<Mezo> temp_szomszedok;
+    private ArrayList<Mezo> temp_szomszedok;
 
     private Babu feherBabu = new Babu("feher");
     private Babu feketeBabu = new Babu("fekete");
+
+    private Integer palyaErteke = 0;
+    private Integer korDontetlenig = 25;
 
 
     public Palya() {
@@ -79,7 +82,37 @@ public class Palya {
             }
             m.setSzomszedok(temp_szomszedok);
         }
+
+        //palyaErteke = palyanLevoBabukErteke();
     }
+
+    int palyanLevoBabukErteke(){
+        int ertek = 0;
+        for(Mezo m: mezok){
+            ertek += m.getBabu().getErtek();
+        }
+        return ertek;
+    }
+
+
+    /*boolean jatekVege(){
+        int ujErtek = 0;
+        ujErtek = palyanLevoBabukErteke();
+        if(ujErtek == palyaErteke)
+            korDontetlenig--;
+        else
+            korDontetlenig = 25;
+
+        if(korDontetlenig == 0)
+            //return
+            //jatekDontetlen();
+
+
+        return false;
+        return false;
+    }*/
+
+
 
     private boolean uresE(Mezo jelenlegiMezo, int sor, int oszlop){
         Mezo vizsgaltMezo = null;
@@ -150,9 +183,23 @@ public class Palya {
     }
 
 
-    public List<Mezo> getMezok() {
+    public ArrayList<Mezo> getMezok() {
         return mezok;
     }
 
+    public void setPalyaErteke(Integer palyaErteke) {
+        this.palyaErteke = palyaErteke;
+    }
 
+    public Integer getPalyaErteke() {
+        return palyaErteke;
+    }
+
+    public void setKorDontetlenig(Integer korDontetlenig) {
+        this.korDontetlenig = korDontetlenig;
+    }
+
+    public Integer getKorDontetlenig() {
+        return korDontetlenig;
+    }
 }

@@ -1,25 +1,33 @@
 
 *********FELULET*********
-ELVETVE: kirajzolás frissítő Listener maybe? gyakorlatilag a TablaPanel konstruktor eleje?
 
+-Kiraly
+    -UGRIK
 
--JátékVégeListener!!!!
+-JátékVégeFüggvény: Message ablak
 
 *********MUKODES*********
+-DamaFrame-t menteni nem magát a Pályát
+
 
 -Király:
     -ugrikures() ????
-    -UGRIK
+    -UGRIK: csak előtte lehessen üresen ugrani
+	ÉS/VAGY Bábuba és Királyba: boolean ugrottE()
+		bábunál simán ugrott-at adja vissza
+		Kiralynal ugrott és uresetUgrott
 
 
-
--JátékVégeListener!!!!
-
--Szerializáció
-
+-JátékVégeFüggvény
+	-döntetlen:
+	    -Ha fehér rányom hozzáadja (ArrayList-hez), hogy döntetlent akar, ha megint a fehér nyom rá elveszi onnan
+	    -Ha a fekete is rányom akkor dönmtetlen
 
 *********DOKUMENTÁCIÓHOZ / SPECIFIKÁCIÓ MÓDOSÍTÁS*********
 -csak a FEHÉR mezőkön folyik a játékmenet
 -ugrás után:
     -lehet passzolni
     -nem ugorható üres mezőre kattintva passzol
+
+MAYBE:
+-KIRÁLY UGRIK: csak előtte lehessen üreset ugrani

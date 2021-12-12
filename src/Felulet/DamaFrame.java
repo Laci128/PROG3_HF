@@ -1,25 +1,32 @@
 package Felulet;
 
+import Mukodes.Palya;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 
 /**
  * A teljes Dáma játék kerete
  */
 public class DamaFrame extends JFrame {
     private TablaPanel tabla;
-    private JLabel jelenlegiJatekosLabel = new JLabel();
+    private JLabel jelenlegiJatekosLabel;
 
-    public DamaFrame(){
+    public DamaFrame(Palya betoltottPalya){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Dáma");
         setSize(1200,900);
         setResizable(false);
 
+
+
         JLayeredPane pane = new JLayeredPane();
         getContentPane().add(pane);
 
-        tabla = new TablaPanel();
+        tabla = new TablaPanel(betoltottPalya);
         jelenlegiJatekosLabel = tabla.getJelenlegiJatekos();
 
         JButton mentes = new JButton("Játékállás mentése");
@@ -71,11 +78,39 @@ public class DamaFrame extends JFrame {
         pane.add(passz,JLayeredPane.DEFAULT_LAYER);
         pane.add(labelPanel,JLayeredPane.DEFAULT_LAYER);
 
+        mentes.addActionListener(new mentesGombListener());
+
     }
 
-    public void setJelenlegiJatekosLabel(String jelenlegi_j) {
-        jelenlegiJatekosLabel.setText(jelenlegi_j);
+
+
+    public void palyaMentese() {
+        try{
+            FileOutputStream f = new FileOutputStream("palya.txt");
+            ObjectOutputStream out = new ObjectOutputStream(f);
+            out.writeObject(tabla.getPalya());
+            out.close();
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+
     }
+
+    private class mentesGombListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            palyaMentese();
+        }
+    }
+
+
+
+
+    /*public void setJelenlegiJatekosLabel(String jelenlegi_j) {
+        jelenlegiJatekosLabel.setText(jelenlegi_j);
+    }*/
 
 
 

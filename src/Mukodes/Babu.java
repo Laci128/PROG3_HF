@@ -1,12 +1,13 @@
 package Mukodes;
 
 import javax.swing.*;
+import java.io.Serializable;
 
 /**
  *
  *
  */
-public class Babu {
+public class Babu implements Serializable {
     /**
      * A Babu értéke, azért kell mert, ha 25 lépés után
      * nem történik változás a bábuk összértékben akkor döntetlen a játékeredménye.

@@ -2,14 +2,14 @@ package Mukodes;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * A játéktér alapvető mezői, amin a bábuk helyezkednek el.
  * Ősosztálya a Kiraly bábunak.
  */
-public class Mezo {
+public class Mezo implements Serializable {
 
     /**
      * A pozíciójának egyik koordinátája
@@ -24,7 +24,7 @@ public class Mezo {
     /**
      * A Mezo szomszédai.
      */
-    private List<Mezo> szomszedok = new ArrayList<Mezo>();
+    private ArrayList<Mezo> szomszedok = new ArrayList<Mezo>();
 
     /**
      * Ezen a mezon jelenleg rajta levo Babu.
@@ -101,7 +101,7 @@ public class Mezo {
      *
      * @param sz
      */
-    public void setSzomszedok(List<Mezo> sz) {
+    public void setSzomszedok(ArrayList<Mezo> sz) {
         szomszedok = sz;
     }
 
@@ -109,7 +109,7 @@ public class Mezo {
      *
      * @return
      */
-    public List<Mezo> getSzomszedok() {
+    public ArrayList<Mezo> getSzomszedok() {
         return szomszedok;
     }
 
