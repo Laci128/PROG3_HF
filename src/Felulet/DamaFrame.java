@@ -27,7 +27,7 @@ public class DamaFrame extends JFrame {
         getContentPane().add(pane);
 
         tabla = new TablaPanel(betoltottPalya);
-        jelenlegiJatekosLabel = tabla.getJelenlegiJatekos();
+        jelenlegiJatekosLabel = tabla.getJelenlegiJatekosLabel();
 
         JButton mentes = new JButton("Játékállás mentése");
         JButton dontetlen = new JButton("Kiegyezés döntetlenben");
@@ -88,6 +88,12 @@ public class DamaFrame extends JFrame {
         try{
             FileOutputStream f = new FileOutputStream("palya.txt");
             ObjectOutputStream out = new ObjectOutputStream(f);
+
+            //jelenlegiJatekos kimentese
+            tabla.getPalya().setJelenlegiJatekos(tabla.getJelenlegiJatekosLabel().getText());
+            //kivalaszottBabu kimentese
+            tabla.getPalya().setKivalasztottBabu(tabla.getKivalasztottBabuTabla());
+
             out.writeObject(tabla.getPalya());
             out.close();
         }

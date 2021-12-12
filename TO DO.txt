@@ -7,8 +7,6 @@
 -JátékVégeFüggvény: Message ablak
 
 *********MUKODES*********
--DamaFrame-t menteni nem magát a Pályát
-
 
 -Király:
     -ugrikures() ????

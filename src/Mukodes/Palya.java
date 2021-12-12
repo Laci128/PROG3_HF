@@ -26,6 +26,15 @@ public class Palya implements Serializable {
     private Integer palyaErteke = 0;
     private Integer korDontetlenig = 25;
 
+    /**
+     * Csak szerializás miatt
+     */
+    private String jelenlegiJatekos;
+    /**
+     * Csak szerializás miatt
+     */
+    private Babu kivalasztottBabu;
+
 
     public Palya() {
 
@@ -201,5 +210,22 @@ public class Palya implements Serializable {
 
     public Integer getKorDontetlenig() {
         return korDontetlenig;
+    }
+
+    public void setJelenlegiJatekos(String jelenlegiJatekos) {
+        this.jelenlegiJatekos = jelenlegiJatekos;
+    }
+
+    public String getJelenlegiJatekos() {
+        return jelenlegiJatekos;
+    }
+
+
+    public void setKivalasztottBabu(Babu kivalasztottBabu) {
+        this.kivalasztottBabu = kivalasztottBabu;
+    }
+
+    public Babu getKivalasztottBabu() {
+        return kivalasztottBabu;
     }
 }

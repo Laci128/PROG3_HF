@@ -19,7 +19,7 @@ public class TablaPanel extends JPanel {
     private Palya palya;
 
     private Babu kivalasztottBabu;
-    private JLabel jelenlegiJatekos = new JLabel("feher");
+    private JLabel jelenlegiJatekosLabel = new JLabel("feher");
     private Color Feher = new Color(245, 245, 245);
 
     TablaPanel(Palya betoltottPalya) {
@@ -29,10 +29,14 @@ public class TablaPanel extends JPanel {
         /*
             Kezdő pozíció
          */
-        if(betoltottPalya != null)
+        if(betoltottPalya != null) {
             palya = betoltottPalya;
-        else
+            jelenlegiJatekosLabel.setText(palya.getJelenlegiJatekos());
+            kivalasztottBabu = palya.getKivalasztottBabu();
+        }
+        else {
             palya = new Palya();
+        }
 
         JPanel ujpanel;
         int sor = 1;
@@ -75,11 +79,11 @@ public class TablaPanel extends JPanel {
     }
 
     public void passz(){
-        if(jelenlegiJatekos.getText().equals("feher")){
-            jelenlegiJatekos.setText("fekete");
+        if(jelenlegiJatekosLabel.getText().equals("feher")){
+            jelenlegiJatekosLabel.setText("fekete");
         }
         else
-            jelenlegiJatekos.setText("feher");
+            jelenlegiJatekosLabel.setText("feher");
         if(kivalasztottBabu != null) {
             kivalasztottBabu.getJelenlegiMezo().getMezoPanel().setBackground(Feher);
             kivalasztottBabu = null;
@@ -147,12 +151,12 @@ public class TablaPanel extends JPanel {
 
             for (Mezo kivalasztottMezo : palya.getMezok()) {
                 if(sorszam != -1 && (sorszam +1) == kivalasztottMezo.Mezoszam()) {
-                    if(kivalasztottBabu == null || kivalasztottBabu.getSzin().equals(jelenlegiJatekos.getText())) {
-                        if(kivalasztottBabu != null && kivalasztottBabu.getUgrott() && kivalasztottBabu.getSzin().equals(jelenlegiJatekos.getText()))
+                    if(kivalasztottBabu == null || kivalasztottBabu.getSzin().equals(jelenlegiJatekosLabel.getText())) {
+                        if(kivalasztottBabu != null && kivalasztottBabu.getUgrott() && kivalasztottBabu.getSzin().equals(jelenlegiJatekosLabel.getText()))
                             return;
                         if(kivalasztottBabu != null)
                             kivalasztottBabu.getJelenlegiMezo().getMezoPanel().setBackground(Feher);
-                        if (kivalasztottMezo.getBabu().getSzin().equals(jelenlegiJatekos.getText())) {
+                        if (kivalasztottMezo.getBabu().getSzin().equals(jelenlegiJatekosLabel.getText())) {
                             kivalasztottBabu = kivalasztottMezo.getBabu();
                             kivalasztottMezo.getMezoPanel().setBackground(Feher);
                             kivalasztottMezo.getMezoPanel().setBackground(Color.CYAN);
@@ -200,7 +204,7 @@ public class TablaPanel extends JPanel {
                     if (kivalasztottBabu == null){
                         return;
                     }
-                    if(kivalasztottBabu.getSzin().equals(jelenlegiJatekos.getText())) {
+                    if(kivalasztottBabu.getSzin().equals(jelenlegiJatekosLabel.getText())) {
                         jelenlegiMezo = kivalasztottBabu.getJelenlegiMezo();
                         //LÉP
                         if(kivalasztottBabu.getErtek() == 5 || jelenlegiMezo.getSzomszedok().contains(celMezo)) {
@@ -259,20 +263,27 @@ public class TablaPanel extends JPanel {
     }
 
 
+    public void setPalya(Palya palya) {
+        this.palya = palya;
+    }
 
     public Palya getPalya() {
         return palya;
     }
 
-    public void setPalya(Palya palya) {
-        this.palya = palya;
+    public void setJelenlegiJatekosLabel(JLabel jelenlegiJatekos) {
+        this.jelenlegiJatekosLabel = jelenlegiJatekos;
     }
 
-    public JLabel getJelenlegiJatekos() {
-        return jelenlegiJatekos;
+    public JLabel getJelenlegiJatekosLabel() {
+        return jelenlegiJatekosLabel;
     }
 
-    public void setJelenlegiJatekos(JLabel jelenlegiJatekos) {
-        this.jelenlegiJatekos = jelenlegiJatekos;
+    public void setKivalasztottBabuTabla(Babu kivalasztottBabu) {
+        this.kivalasztottBabu = kivalasztottBabu;
+    }
+
+    public Babu getKivalasztottBabuTabla() {
+        return kivalasztottBabu;
     }
 }
