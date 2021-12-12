@@ -140,6 +140,7 @@ public class Palya implements Serializable {
         int sorTav = celMezo.getSor() - jelenlegiMezo.getSor();
         int oszlopTav = celMezo.getOszlop() - jelenlegiMezo.getOszlop();
 
+        //jobbra le
         if(sorTav > 0 && oszlopTav > 0) {
             int sor = 1;
             int oszlop = 1;
@@ -152,6 +153,7 @@ public class Palya implements Serializable {
             return true;
         }
 
+        //balra le
         if(sorTav > 0 && oszlopTav < 0) {
             int sor = 1;
             int oszlop = -1;
@@ -164,6 +166,7 @@ public class Palya implements Serializable {
             return true;
         }
 
+        //jobbra fel
         if(sorTav < 0 && oszlopTav > 0) {
             int sor = -1;
             int oszlop = 1;
@@ -176,9 +179,10 @@ public class Palya implements Serializable {
             return true;
         }
 
+        //balra fel
         if(sorTav < 0 && oszlopTav < 0) {
             int sor = -1;
-            int oszlop = 1;
+            int oszlop = -1;
             while (sor > sorTav && oszlop > oszlopTav) {
                 if (!uresE(jelenlegiMezo, sor, oszlop))
                     return false;

@@ -206,8 +206,10 @@ public class TablaPanel extends JPanel {
                     }
                     if(kivalasztottBabu.getSzin().equals(jelenlegiJatekosLabel.getText())) {
                         jelenlegiMezo = kivalasztottBabu.getJelenlegiMezo();
+
+
                         //LÉP
-                        if(kivalasztottBabu.getErtek() == 5 || jelenlegiMezo.getSzomszedok().contains(celMezo)) {
+                        if( palya.szabadEAzUt(jelenlegiMezo, celMezo) ) {
                             if(kivalasztottBabu.getUgrott()) {
                                 kivalasztottBabu.setUgrott(false);
                                 passz();
