@@ -143,6 +143,9 @@ public class Kiraly extends Babu {
 
     @Override
     public boolean Ugrott() {
+        if(!uresbenUgrott)
+            return true;
+
         return (ugrott || uresbenUgrott);
     }
 
@@ -156,6 +159,7 @@ public class Kiraly extends Babu {
         this.uresbenUgrott = uresbenUgrott;
     }
 
+    //@Override
     public Boolean getUresbenUgrott() {
         return uresbenUgrott;
     }

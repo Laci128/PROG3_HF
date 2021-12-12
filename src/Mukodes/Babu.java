@@ -108,6 +108,8 @@ public class Babu implements Serializable {
 
     public void setUresbenUgrott(Boolean uresbenUgrott) {}
 
+    //public Boolean getUresbenUgrott() { return false;}
+
     public boolean Ugrott(){
         return ugrott;
     }
