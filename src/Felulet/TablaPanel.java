@@ -226,17 +226,24 @@ public class TablaPanel extends JPanel {
                         //UGRIK
                         else {
                             atugrottMezo = kivalasztottBabu.Ugrik(celMezo);
+
+
                             if (atugrottMezo != null){
                                 babutAthelyez(jelenlegiMezo,celMezo);
                                 if(KiralyLeszEFelulet())
                                     passz();
-
-                                atugrottMezo.getMezoPanel().setBackground(Feher);
-                                atugrottMezo.getMezoPanel().remove(atugrottMezo.getBabu().getBabuLabel());
-                                atugrottMezo.getMezoPanel().revalidate();
-                                atugrottMezo.getMezoPanel().repaint();
-                                atugrottMezo.setBabu(null);
-
+                                if(atugrottMezo.getBabu()!= null) {
+                                    atugrottMezo.getMezoPanel().setBackground(Feher);
+                                    atugrottMezo.getMezoPanel().remove(atugrottMezo.getBabu().getBabuLabel());
+                                    atugrottMezo.getMezoPanel().revalidate();
+                                    atugrottMezo.getMezoPanel().repaint();
+                                    atugrottMezo.setBabu(null);
+                                }
+                                if(kivalasztottBabu.getErtek() == 5 && kivalasztottBabu.TeljesenUgrott()){
+                                    kivalasztottBabu.setUgrott(false);
+                                    kivalasztottBabu.setUresbenUgrott(false);
+                                    passz();
+                                }
                             }
                             else{
                                 if(kivalasztottBabu.getUgrott()){

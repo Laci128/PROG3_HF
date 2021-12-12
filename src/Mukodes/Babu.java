@@ -106,9 +106,17 @@ public class Babu implements Serializable {
     }
 
 
+    public void setUresbenUgrott(Boolean uresbenUgrott) {}
+
     public boolean Ugrott(){
         return ugrott;
     }
+
+    public boolean TeljesenUgrott(){
+        return ugrott;
+    }
+
+
 
 
     public String getSzin() {

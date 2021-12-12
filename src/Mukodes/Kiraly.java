@@ -125,7 +125,6 @@ public class Kiraly extends Babu {
                         jelenlegiMezo = celMezo;
                         celMezo.setBabu(this);
                         uresbenUgrott = true;
-                        //ugrott = false;
                         return kozosMezo;
                     }
                     //ugrott            true
@@ -147,6 +146,12 @@ public class Kiraly extends Babu {
         return (ugrott || uresbenUgrott);
     }
 
+    @Override
+    public boolean TeljesenUgrott() {
+        return (ugrott && uresbenUgrott);
+    }
+
+    @Override
     public void setUresbenUgrott(Boolean uresbenUgrott) {
         this.uresbenUgrott = uresbenUgrott;
     }
