@@ -21,11 +21,19 @@
 	    -Ha fehér rányom hozzáadja (ArrayList-hez), hogy döntetlent akar, ha megint a fehér nyom rá elveszi onnan
 	    -Ha a fekete is rányom akkor dönmtetlen
 
+
+-JUNIT TESZTEK !!!!!!!!!!!!
+-JAVADOC KOMMENTEK !!!!!!!!!!!!
+
+
 *********DOKUMENTÁCIÓHOZ / SPECIFIKÁCIÓ MÓDOSÍTÁS*********
--csak a FEHÉR mezőkön folyik a játékmenet
--ugrás után:
-    -lehet passzolni
-    -nem ugorható üres mezőre kattintva passzol
+
+FELHASZNÁLÓ DOKUMENTÁCIÓ !!!!!!!!!!!!!!!!:
+    -csak a FEHÉR mezőkön folyik a játékmenet
+    -ugrás után:
+        -lehet passzolni
+        -nem ugorható üres mezőre kattintva passzol
+
 
 MAYBE:
 -KIRÁLY UGRIK: csak előtte lehessen üreset ugrani

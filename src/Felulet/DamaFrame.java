@@ -108,6 +108,9 @@ public class DamaFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             palyaMentese();
+            setVisible(false);
+            MenuFrame menuFrame = new MenuFrame();
+            menuFrame.setVisible(true);
         }
     }
 
