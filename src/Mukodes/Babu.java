@@ -106,6 +106,11 @@ public class Babu implements Serializable {
     }
 
 
+    public boolean Ugrott(){
+        return ugrott;
+    }
+
+
     public String getSzin() {
         return szin;
     }
@@ -150,8 +155,7 @@ public class Babu implements Serializable {
 
     public Palya getPalya() {return null;}
 
-    public void setUresbenUgrott(Boolean uresbenUgrott) {}
 
-    public Boolean getUresbenUgrott() {return true;}
+
 
     }

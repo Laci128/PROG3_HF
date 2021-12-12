@@ -141,6 +141,22 @@ public class Kiraly extends Babu {
         return null;
     }
 
+
+    @Override
+    public boolean Ugrott() {
+        return (ugrott || uresbenUgrott);
+    }
+
+    public void setUresbenUgrott(Boolean uresbenUgrott) {
+        this.uresbenUgrott = uresbenUgrott;
+    }
+
+    public Boolean getUresbenUgrott() {
+        return uresbenUgrott;
+    }
+
+
+
     @Override
     public Integer getErtek() {
         return ertek;
@@ -201,13 +217,4 @@ public class Kiraly extends Babu {
         return palya;
     }
 
-    @Override
-    public void setUresbenUgrott(Boolean uresbenUgrott) {
-        this.uresbenUgrott = uresbenUgrott;
-    }
-
-    @Override
-    public Boolean getUresbenUgrott() {
-        return uresbenUgrott;
-    }
 }

@@ -50,6 +50,9 @@ public class Mezo implements Serializable {
     }
 
     public Babu KiralyLeszE(){
+        if(babu.getErtek() == 5)
+            return null;
+
         Kiraly kiraly;
         if(babu.getSzin().equals("feher")){
             if(Sor == 8){

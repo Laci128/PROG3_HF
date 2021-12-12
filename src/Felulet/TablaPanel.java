@@ -209,7 +209,7 @@ public class TablaPanel extends JPanel {
 
 
                         //LÉP
-                        if( palya.szabadEAzUt(jelenlegiMezo, celMezo) ) {
+                        if( palya.szabadEAzUt(jelenlegiMezo, celMezo) && !kivalasztottBabu.Ugrott()) {
                             if(kivalasztottBabu.getUgrott()) {
                                 kivalasztottBabu.setUgrott(false);
                                 passz();
