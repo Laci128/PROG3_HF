@@ -20,6 +20,8 @@
 	-döntetlen:
 	    -Ha fehér rányom hozzáadja (ArrayList-hez), hogy döntetlent akar, ha megint a fehér nyom rá elveszi onnan
 	    -Ha a fekete is rányom akkor dönmtetlen
+	-valamelyik színü bábu száma 0
+
 
 
 -JUNIT TESZTEK !!!!!!!!!!!!
@@ -33,6 +35,8 @@ FELHASZNÁLÓ DOKUMENTÁCIÓ !!!!!!!!!!!!!!!!:
     -ugrás után:
         -lehet passzolni
         -nem ugorható üres mezőre kattintva passzol
+    -nem tud mozogni és játékvége???
+        -nem lesz ilyen, passzol és kész
 
 
 MAYBE:
