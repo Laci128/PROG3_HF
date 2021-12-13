@@ -39,7 +39,6 @@ public class MenuFrame extends JFrame {
             setVisible(false);
             DamaFrame ujDamaFrame = new DamaFrame(betoltottPalya);
             ujDamaFrame.setVisible(true);
-            //ujDamaFrame.setJelenlegiJatekosLabel(jatek.getKezdetiJatekos());
         }
     }
 

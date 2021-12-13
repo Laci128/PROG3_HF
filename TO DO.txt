@@ -1,27 +1,24 @@
 
 *********FELULET*********
 
--JátékVégeFüggvény: Message ablak
 
 *********MUKODES*********
 
--JátékVégeFüggvény
-	-döntetlen:
-	    -Ha a fekete is rányom akkor döntetlen
-	-valamelyik színü bábu száma 0
 
 -JUNIT TESZTEK !!!!!!!!!!!!
--JAVADOC KOMMENTEK !!!!!!!!!!!!
+
 
 
 *********DOKUMENTÁCIÓHOZ / SPECIFIKÁCIÓ MÓDOSÍTÁS*********
 
-FELHASZNÁLÓ DOKUMENTÁCIÓ !!!!!!!!!!!!!!!!:
+JAVADOC KOMMENTEK !!!!!!!!!!!!
+
+
+FELHASZNÁLÓ DOKUMENTÁCIÓ !!!!!!!!!!!!!!!!
     -csak a FEHÉR mezőkön folyik a játékmenet
     -ugrás után:
         -lehet passzolni
         -nem ugorható üres mezőre kattintva passzol
     -KIRÁLY UGRIK: csak utána lehet üreset ugrani
 
-    -nem tud mozogni és játékvége???
-        -nem lesz ilyen, passzol és kész
+

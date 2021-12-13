@@ -72,21 +72,6 @@ public class Kiraly extends Babu {
                 if ((celMezo.getOszlop() - jelenlegiMezo.getOszlop() == 2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == 1)
                         || (celMezo.getOszlop() - jelenlegiMezo.getOszlop() == -2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == -1)) {
 
-                    /*
-                    boolean celMezoSzomszedBabuVanE = false;
-                    for(Mezo m: celMezo.getSzomszedok()){
-                        if(m.getBabu() != null && m != kozosMezo){
-                            celMezoSzomszedBabuVanE = true;
-                            break;
-                        }
-                    }
-                    if(!ugrott && !uresbenUgrott && kozosMezo.getBabu() == null && celMezoSzomszedBabuVanE){
-                        jelenlegiMezo.setBabu(null);
-                        jelenlegiMezo = celMezo;
-                        celMezo.setBabu(this);
-                        uresbenUgrott = true;
-                        return kozosMezo;
-                    }*/
 
                     if (kozosMezo.getBabu() != null && !kozosMezo.getBabu().getSzin().equals(szin)) {
                         jelenlegiMezo.setBabu(null);

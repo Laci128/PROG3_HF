@@ -92,35 +92,39 @@ public class Palya implements Serializable {
             m.setSzomszedok(temp_szomszedok);
         }
 
-        //palyaErteke = palyanLevoBabukErteke();
+        palyaErteke = palyanLevoBabukErteke();
     }
 
-    int palyanLevoBabukErteke(){
+    public int palyanLevoBabukErteke(){
         int ertek = 0;
         for(Mezo m: mezok){
-            ertek += m.getBabu().getErtek();
+            if(m.getBabu() != null)
+                ertek += m.getBabu().getErtek();
         }
         return ertek;
     }
 
+    public String nyertEValaki(){
+        Boolean vanEFeherBabu = false;
+        Boolean vanEFeketeBabu = false;
 
-    /*boolean jatekVege(){
-        int ujErtek = 0;
-        ujErtek = palyanLevoBabukErteke();
-        if(ujErtek == palyaErteke)
-            korDontetlenig--;
-        else
-            korDontetlenig = 25;
+        for(Mezo m: mezok) {
+            if (m.getBabu() != null) {
+                if (m.getBabu().getSzin().equals("feher"))
+                    vanEFeherBabu = true;
+                else
+                    vanEFeketeBabu = true;
+            }
+        }
 
-        if(korDontetlenig == 0)
-            //return
-            //jatekDontetlen();
+        if(vanEFeherBabu && !vanEFeketeBabu)
+            return "feher";
+        if(!vanEFeherBabu && vanEFeketeBabu)
+            return "fekete";
 
+        return null;
 
-        return false;
-        return false;
-    }*/
-
+    }
 
 
     private boolean uresE(Mezo jelenlegiMezo, int sor, int oszlop){
@@ -232,4 +236,5 @@ public class Palya implements Serializable {
     public Babu getKivalasztottBabu() {
         return kivalasztottBabu;
     }
+
 }

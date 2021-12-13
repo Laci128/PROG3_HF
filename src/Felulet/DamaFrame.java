@@ -3,7 +3,6 @@ package Felulet;
 import Mukodes.Palya;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicOptionPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -131,8 +130,9 @@ public class DamaFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(dontetlenHozzaad()){
-                JOptionPane.showMessageDialog(
-                        null, "A játéknak vége. A játékosok kiegyeztek döntetlenben.","Döntetlen",JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null,
+                        "A játéknak vége. A játékosok kiegyeztek döntetlenben.","Döntetlen",
+                        JOptionPane.PLAIN_MESSAGE);
             }
 
         }

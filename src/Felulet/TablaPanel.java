@@ -71,11 +71,6 @@ public class TablaPanel extends JPanel {
             if ((i + sor) % 2 == 1)
                 getComponent(i).setBackground(Color.BLACK);
         }
-
-    }
-
-    private TablaPanel magatVisszaado(){
-        return this;
     }
 
     public void passz(){
@@ -119,12 +114,34 @@ public class TablaPanel extends JPanel {
     }
 
 
+    public void jatekVege(){
+        //Valamelyik szín nyert
+        if(palya.nyertEValaki() != null)
+            JOptionPane.showMessageDialog(null,
+                    "A játéknak vége. A "+palya.nyertEValaki()+ " játékos nyert",
+                    "A "+palya.nyertEValaki()+ " játékos nyert",
+                    JOptionPane.PLAIN_MESSAGE);
+
+        //Döntetlen
+        int ujErtek = palya.palyanLevoBabukErteke();
+        if(ujErtek == palya.getPalyaErteke())
+            palya.setKorDontetlenig(palya.getKorDontetlenig()-1);
+        else
+            palya.setKorDontetlenig(25);
+
+        if(palya.getKorDontetlenig() == 0)
+            JOptionPane.showMessageDialog(null,
+                    "A játéknak vége. Döntetlen. \n25 körön keresztül nem változott a bábuk összértéke. \n(Nem lett király sima bábuból, nem volt leütés)",
+                    "Döntetlen",
+                    JOptionPane.PLAIN_MESSAGE);
+    }
+
 
     private class passzGombListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             passz();
+            jatekVege();
         }
     }
 
@@ -135,10 +152,10 @@ public class TablaPanel extends JPanel {
         public void mouseClicked(MouseEvent e) {
             JLabel klikkeltLabel = (JLabel) e.getComponent();
 
-            JPanel labelPanele = new JPanel();
+            JPanel labelPanele;
             int sorszam = -1;
             for(int i= 0; i <=63; i++) {
-                labelPanele = (JPanel) magatVisszaado().getComponent(i);
+                labelPanele = (JPanel) getComponent(i);
 
                 for (Component comp : labelPanele.getComponents()) {
                     JLabel temp = (JLabel) comp;
@@ -188,7 +205,7 @@ public class TablaPanel extends JPanel {
 
             int sorszam = -1;
             for(int i= 0; i <=63; i++) {
-                JPanel temp = (JPanel) magatVisszaado().getComponent(i);
+                JPanel temp = (JPanel) getComponent(i);
 
                     if ((klikkeltPanel.equals(temp))) {
                         sorszam = i;
@@ -198,7 +215,6 @@ public class TablaPanel extends JPanel {
 
             for (Mezo celMezo : palya.getMezok()) {
                 if(sorszam != -1 && (sorszam +1) == celMezo.Mezoszam()) {
-                    //celMezo.getMezoPanel().setBackground(Color.RED);   //teszthez
                     Mezo jelenlegiMezo;
                     Mezo atugrottMezo;
                     if (kivalasztottBabu == null){
@@ -216,17 +232,19 @@ public class TablaPanel extends JPanel {
                                 return;
                             }
                             if (kivalasztottBabu.Lep(celMezo)) {
-                                if(kivalasztottBabu.getUgrott())
+                                if (kivalasztottBabu.getUgrott())
                                     kivalasztottBabu.setUgrott(false);
-                                babutAthelyez(jelenlegiMezo,celMezo);
+                                babutAthelyez(jelenlegiMezo, celMezo);
                                 KiralyLeszEFelulet();
-                                    passz();
+                                passz();
+
+                                //Lépés után ellenőriz
+                                jatekVege();
                             }
                         }
                         //UGRIK
                         else {
                             atugrottMezo = kivalasztottBabu.Ugrik(celMezo);
-
 
                             if (atugrottMezo != null){
                                 babutAthelyez(jelenlegiMezo,celMezo);
@@ -238,21 +256,28 @@ public class TablaPanel extends JPanel {
                                     atugrottMezo.getMezoPanel().repaint();
                                     atugrottMezo.setBabu(null);
                                 }
-                                if(kivalasztottBabu.getErtek() == 5 && kivalasztottBabu.TeljesenUgrott()){
+
+                                if(kivalasztottBabu.TeljesenUgrott()){
                                     kivalasztottBabu.setUgrott(false);
                                     kivalasztottBabu.setUresbenUgrott(false);
                                     passz();
+
+                                    //Királynál ha üresen is ugrott a végén ellenőriz
+                                    jatekVege();
                                     return;
                                 }
 
                                 if(KiralyLeszEFelulet())
                                     passz();
+
                             }
                             else{
                                 if(kivalasztottBabu.getUgrott()){
                                     kivalasztottBabu.setUgrott(false);
                                     passz();
 
+                                    //Sima bábu ugrása végén és Királynál ha ugrások után nem ugrik üreset
+                                    jatekVege();
                                 }
                             }
                         }

@@ -94,7 +94,8 @@ public class Babu implements Serializable {
                         celMezo.setBabu(this);
                         ugrott = true;
                         return kozosMezo;
-                    } else
+                    }
+                    else
                         return null;
                 } else
                     return null;
@@ -113,9 +114,8 @@ public class Babu implements Serializable {
     }
 
     public boolean TeljesenUgrott(){
-        return ugrott;
+        return false;
     }
-
 
 
 
@@ -162,8 +162,6 @@ public class Babu implements Serializable {
     public void setPalya(Palya palya) {}
 
     public Palya getPalya() {return null;}
-
-
 
 
     }
