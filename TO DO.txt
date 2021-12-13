@@ -7,8 +7,7 @@
 
 -JátékVégeFüggvény
 	-döntetlen:
-	    -Ha fehér rányom hozzáadja (ArrayList-hez), hogy döntetlent akar, ha megint a fehér nyom rá elveszi onnan
-	    -Ha a fekete is rányom akkor dönmtetlen
+	    -Ha a fekete is rányom akkor döntetlen
 	-valamelyik színü bábu száma 0
 
 -JUNIT TESZTEK !!!!!!!!!!!!

@@ -3,6 +3,7 @@ package Felulet;
 import Mukodes.Palya;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicOptionPaneUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,8 +44,6 @@ public class DamaFrame extends JFrame {
         passz.setBounds(20,230,200,50);
         labelPanel.setBounds(20,340,200,50);
 
-        passz.addActionListener(tabla.passzGombListenerAdo());
-
         /*
             Pálya széli számok ás betűk
          */
@@ -71,15 +70,16 @@ public class DamaFrame extends JFrame {
             pane.add(betu,JLayeredPane.DEFAULT_LAYER);
         }
 
-
-
         pane.add(tabla,JLayeredPane.DEFAULT_LAYER);
         pane.add(mentes,JLayeredPane.DEFAULT_LAYER);
         pane.add(dontetlen,JLayeredPane.DEFAULT_LAYER);
         pane.add(passz,JLayeredPane.DEFAULT_LAYER);
         pane.add(labelPanel,JLayeredPane.DEFAULT_LAYER);
 
+
         mentes.addActionListener(new mentesGombListener());
+        passz.addActionListener(tabla.passzGombListenerAdo());
+        dontetlen.addActionListener(new dontetlenGombListener());
 
     }
 
@@ -104,9 +104,14 @@ public class DamaFrame extends JFrame {
 
     }
 
-    public void dontetlenHozzaad(){
+    public Boolean dontetlenHozzaad(){
+        if(!dontetlentSzeretne.contains(jelenlegiJatekosLabel.getText()))
+            dontetlentSzeretne.add(jelenlegiJatekosLabel.getText());
 
+        return dontetlentSzeretne.contains("feher") && dontetlentSzeretne.contains("fekete");
     }
+
+
 
     private class mentesGombListener implements ActionListener {
 
@@ -119,4 +124,17 @@ public class DamaFrame extends JFrame {
         }
     }
 
+
+
+    private class dontetlenGombListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(dontetlenHozzaad()){
+                JOptionPane.showMessageDialog(
+                        null, "A játéknak vége. A játékosok kiegyeztek döntetlenben.","Döntetlen",JOptionPane.PLAIN_MESSAGE);
+            }
+
+        }
+    }
 }
