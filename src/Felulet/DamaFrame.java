@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * A teljes Dáma játék kerete
@@ -14,13 +15,13 @@ import java.io.*;
 public class DamaFrame extends JFrame {
     private TablaPanel tabla;
     private JLabel jelenlegiJatekosLabel;
+    private ArrayList<String> dontetlentSzeretne = new ArrayList<String>();
 
     public DamaFrame(Palya betoltottPalya){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Dáma");
         setSize(1200,900);
         setResizable(false);
-
 
 
         JLayeredPane pane = new JLayeredPane();
@@ -103,6 +104,10 @@ public class DamaFrame extends JFrame {
 
     }
 
+    public void dontetlenHozzaad(){
+
+    }
+
     private class mentesGombListener implements ActionListener {
 
         @Override
@@ -113,15 +118,5 @@ public class DamaFrame extends JFrame {
             menuFrame.setVisible(true);
         }
     }
-
-
-
-
-    /*public void setJelenlegiJatekosLabel(String jelenlegi_j) {
-        jelenlegiJatekosLabel.setText(jelenlegi_j);
-    }*/
-
-
-
 
 }

@@ -52,24 +52,6 @@ public class Kiraly extends Babu {
         else
             return false;
     }
-/*
-    @Override
-    //Bármerre EGYET léphet
-    public boolean Lep(Mezo m){
-        if(jelenlegiMezo.getSzomszedok().contains(m) && m.getBabu() == null) {
-            int sorTav = m.getSor() - jelenlegiMezo.getSor();
-            if (Math.abs(sorTav) == 1) {
-                jelenlegiMezo.setBabu(null);
-                jelenlegiMezo = m;
-                m.setBabu(this);
-                return true;
-            } else
-                return false;
-        }
-        else
-            return false;
-    }
-    */
 
     @Override
     public Mezo Ugrik(Mezo celMezo){
@@ -90,7 +72,7 @@ public class Kiraly extends Babu {
                 if ((celMezo.getOszlop() - jelenlegiMezo.getOszlop() == 2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == 1)
                         || (celMezo.getOszlop() - jelenlegiMezo.getOszlop() == -2 && kozosMezo.getOszlop() - jelenlegiMezo.getOszlop() == -1)) {
 
-
+                    /*
                     boolean celMezoSzomszedBabuVanE = false;
                     for(Mezo m: celMezo.getSzomszedok()){
                         if(m.getBabu() != null && m != kozosMezo){
@@ -98,16 +80,13 @@ public class Kiraly extends Babu {
                             break;
                         }
                     }
-
                     if(!ugrott && !uresbenUgrott && kozosMezo.getBabu() == null && celMezoSzomszedBabuVanE){
                         jelenlegiMezo.setBabu(null);
                         jelenlegiMezo = celMezo;
                         celMezo.setBabu(this);
                         uresbenUgrott = true;
                         return kozosMezo;
-                    }
-                    //ugrott            false
-                    //uresbenUgrott     true
+                    }*/
 
                     if (kozosMezo.getBabu() != null && !kozosMezo.getBabu().getSzin().equals(szin)) {
                         jelenlegiMezo.setBabu(null);
@@ -117,8 +96,7 @@ public class Kiraly extends Babu {
                         uresbenUgrott = false;
                         return kozosMezo;
                     }
-                    //ugrott            true
-                    //uresbenUgrott     false
+
 
                     if(ugrott && !uresbenUgrott && kozosMezo.getBabu() == null){
                         jelenlegiMezo.setBabu(null);
@@ -127,8 +105,6 @@ public class Kiraly extends Babu {
                         uresbenUgrott = true;
                         return kozosMezo;
                     }
-                    //ugrott            true
-                    //uresbenUgrott     true
 
                     return null;
                 } else
@@ -143,9 +119,6 @@ public class Kiraly extends Babu {
 
     @Override
     public boolean UgrottE() {
-        //if(!uresbenUgrott)
-         //   return true;
-
         return (ugrott || uresbenUgrott);
     }
 
@@ -159,11 +132,9 @@ public class Kiraly extends Babu {
         this.uresbenUgrott = uresbenUgrott;
     }
 
-    //@Override
     public Boolean getUresbenUgrott() {
         return uresbenUgrott;
     }
-
 
 
     @Override
