@@ -131,7 +131,9 @@ public class TablaPanel extends JPanel {
 
         if(palya.getKorDontetlenig() == 0)
             JOptionPane.showMessageDialog(null,
-                    "A játéknak vége. Döntetlen. \n25 körön keresztül nem változott a bábuk összértéke. \n(Nem lett király sima bábuból, nem volt leütés)",
+                    "A játéknak vége. Döntetlen.\n" +
+                            "25 körön keresztül nem változott a bábuk összértéke.\n" +
+                            "(Nem lett király sima bábuból, nem volt leütés)",
                     "Döntetlen",
                     JOptionPane.PLAIN_MESSAGE);
     }
