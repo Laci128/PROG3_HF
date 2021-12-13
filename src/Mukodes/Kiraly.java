@@ -142,9 +142,9 @@ public class Kiraly extends Babu {
 
 
     @Override
-    public boolean Ugrott() {
-        if(!uresbenUgrott)
-            return true;
+    public boolean UgrottE() {
+        //if(!uresbenUgrott)
+         //   return true;
 
         return (ugrott || uresbenUgrott);
     }

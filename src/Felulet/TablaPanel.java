@@ -209,7 +209,7 @@ public class TablaPanel extends JPanel {
 
 
                         //LÉP
-                        if( palya.szabadEAzUt(jelenlegiMezo, celMezo) && !kivalasztottBabu.Ugrott() ) {
+                        if( palya.szabadEAzUt(jelenlegiMezo, celMezo) && !kivalasztottBabu.UgrottE() ) {
                             if(kivalasztottBabu.getUgrott()) {
                                 kivalasztottBabu.setUgrott(false);
                                 passz();
@@ -230,8 +230,7 @@ public class TablaPanel extends JPanel {
 
                             if (atugrottMezo != null){
                                 babutAthelyez(jelenlegiMezo,celMezo);
-                                if(KiralyLeszEFelulet())
-                                    passz();
+
                                 if(atugrottMezo.getBabu()!= null) {
                                     atugrottMezo.getMezoPanel().setBackground(Feher);
                                     atugrottMezo.getMezoPanel().remove(atugrottMezo.getBabu().getBabuLabel());
@@ -243,7 +242,11 @@ public class TablaPanel extends JPanel {
                                     kivalasztottBabu.setUgrott(false);
                                     kivalasztottBabu.setUresbenUgrott(false);
                                     passz();
+                                    return;
                                 }
+
+                                if(KiralyLeszEFelulet())
+                                    passz();
                             }
                             else{
                                 if(kivalasztottBabu.getUgrott()){

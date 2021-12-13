@@ -9,8 +9,7 @@
 *********MUKODES*********
 
 -Király:
-    -ugrikures() ????
-    -UGRIK: csak előtte lehessen üresen ugrani
+    -UGRIK: csak utána lehessen üresen ugrani
 	ÉS/VAGY Bábuba és Királyba: boolean ugrottE()
 		bábunál simán ugrott-at adja vissza
 		Kiralynal ugrott és uresetUgrott
