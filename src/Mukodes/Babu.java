@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * A játék egyes bábui, amikkel lépünk vagy ugrunk az adott körben.
- * Ősosztálya a Kiraly osztálynak.
+ * Ösosztálya a Kiraly osztálynak.
  */
 public class Babu implements Serializable {
     /**

@@ -15,7 +15,7 @@ public class Palya implements Serializable {
     private ArrayList<Mezo> mezok = new ArrayList<Mezo>();
 
     /**
-     * Átmeneti lista, ami arra kell, hogy egy mező szomszédait összegyűjt
+     * Atmeneti lista, ami arra kell, hogy egy mezo szomszédait összegyűjt
      */
     private ArrayList<Mezo> temp_szomszedok;
 

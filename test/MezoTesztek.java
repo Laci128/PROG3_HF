@@ -61,7 +61,7 @@ public class MezoTesztek {
 
         Babu NemKiraly = mezo.KiralyLeszE();
 
-        Assert.assertNull("Átalakítja királlya, pedig fehér bábu van fehér első sorába!",NemKiraly);
+        Assert.assertNull("Atalakítja királlya, pedig fehér bábu van fehér elso sorába!",NemKiraly);
 
     }
 
