@@ -9,10 +9,12 @@
 
 
 
+
 *********DOKUMENTÁCIÓHOZ / SPECIFIKÁCIÓ MÓDOSÍTÁS*********
 
 JAVADOC KOMMENTEK !!!!!!!!!!!!
 
+OSZTÁLYDIAGRAM!!!!!!!!!!!!!!!!
 
 FELHASZNÁLÓ DOKUMENTÁCIÓ !!!!!!!!!!!!!!!!
     -csak a FEHÉR mezőkön folyik a játékmenet

@@ -77,6 +77,7 @@ public class Kiraly extends Babu {
                         jelenlegiMezo.setBabu(null);
                         jelenlegiMezo = celMezo;
                         celMezo.setBabu(this);
+                        kozosMezo.setBabu(null);
                         ugrott = true;
                         uresbenUgrott = false;
                         return kozosMezo;

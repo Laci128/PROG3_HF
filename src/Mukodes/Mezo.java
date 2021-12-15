@@ -36,12 +36,12 @@ public class Mezo implements Serializable {
 
     /**
      * A Mezo konstruktora
-     * @param a a pozíciójának egyik koordinátája
-     * @param b a pozíciójának másik koordinátája
+     * @param sor a pozíciójának egyik koordinátája
+     * @param oszlop a pozíciójának másik koordinátája
      */
-    public Mezo(int a, int b){
-        Sor = a;
-        Oszlop = b;
+    public Mezo(int sor, int oszlop){
+        Sor = sor;
+        Oszlop = oszlop;
         mezoPanel.setBackground(new Color(245,245,245));
     }
 

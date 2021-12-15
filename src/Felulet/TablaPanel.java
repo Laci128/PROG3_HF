@@ -251,12 +251,11 @@ public class TablaPanel extends JPanel {
                             if (atugrottMezo != null){
                                 babutAthelyez(jelenlegiMezo,celMezo);
 
-                                if(atugrottMezo.getBabu()!= null) {
+                                if(atugrottMezo.getBabu()== null) {
                                     atugrottMezo.getMezoPanel().setBackground(Feher);
-                                    atugrottMezo.getMezoPanel().remove(atugrottMezo.getBabu().getBabuLabel());
+                                    atugrottMezo.getMezoPanel().removeAll();
                                     atugrottMezo.getMezoPanel().revalidate();
                                     atugrottMezo.getMezoPanel().repaint();
-                                    atugrottMezo.setBabu(null);
                                 }
 
                                 if(kivalasztottBabu.TeljesenUgrott()){

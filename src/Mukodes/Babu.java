@@ -92,6 +92,7 @@ public class Babu implements Serializable {
                         jelenlegiMezo.setBabu(null);
                         jelenlegiMezo = celMezo;
                         celMezo.setBabu(this);
+                        kozosMezo.setBabu(null);
                         ugrott = true;
                         return kozosMezo;
                     }
