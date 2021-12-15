@@ -9,8 +9,19 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+/**
+ * A felület "piramisának csúcsa", maga a menü kerete, amiből minden más meghívódik.
+ */
 public class MenuFrame extends JFrame {
+    /**
+     * Ezt kapja meg a DamaFrame, hogy melyik pályán folyik a játék.
+     * Ha nincs betöltes (aza null marad) akkor új Palya generálódik a DamaFrame-ben
+     */
     private Palya betoltottPalya = null;
+
+    /**
+     * MenuFrame konstruktora
+     */
     public MenuFrame() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Dáma");
@@ -28,21 +39,28 @@ public class MenuFrame extends JFrame {
         ujJatek.setBounds(20,20,240,50);
         betoltes.setBounds(20,90,240,50);
 
-        ujJatek.addActionListener(new UjJatekActionListener());
+        ujJatek.addActionListener(new JatekInditasaActionListener());
         betoltes.addActionListener(new betoltesGombListener());
 
 
     }
 
-    private class UjJatekActionListener implements ActionListener{
+    /**
+     * ActionListenner a játék indításához, a "Játék" gombhoz van hozzáadva.
+     * Létrehoz egy DamaFrame-t betoltottPalya paraméterrel és bezárja a menüt
+     */
+    private class JatekInditasaActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
-            setVisible(false);
+            dispose();
             DamaFrame ujDamaFrame = new DamaFrame(betoltottPalya);
             ujDamaFrame.setVisible(true);
         }
     }
 
-
+    /**
+     * A pálya amin játszunk szerialzálható, ha van már korábban elmentett pályánk akkor azt visszaadja
+     * @return Elmentett pálya, ha nincs mentve, akkor null-t ad vissza.
+     */
     public Palya palyaBetoltese(){
         try {
             Palya betoltottPalya;
@@ -58,8 +76,11 @@ public class MenuFrame extends JFrame {
         return null;
     }
 
+    /**
+     * ActionListener, "Legutóbbi játekállás betöltése" gombhoz van hozzáadva.
+     * a betoltottPalya tagváltozót beállítja a palyaBetoltese visszatérési értékére
+     */
     private class betoltesGombListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             betoltottPalya = palyaBetoltese();

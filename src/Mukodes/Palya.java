@@ -4,40 +4,47 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.lang.Math;
 
-
-//A pálya ami a játéktér mezőit tárolja. //és kezeli?
-//Legenerálja a Palyat és törli a régi mezőket.
 /**
- *  A teljes játék működését bonyolítja le.
+ *  A játéktér állapotát generálja, tárolja és változtatja (Mezok, Babuk, stb.)
  */
 public class Palya implements Serializable {
     /**
-     * A Palya mezői, a pálya 8x8-as de csak a mezők felét tárolom,
+     * A Palya Mezői, a pálya 8x8-as de csak a fehér mezőket tárolom,
      * mert csak azon lépkednek a bábuk.
      */
-    //Csak a fehér mezők, SPECIFIKÁCIÓBAN ELÍRTAM, FEKETÉT ÍRTAM
     private ArrayList<Mezo> mezok = new ArrayList<Mezo>();
 
+    /**
+     * Átmeneti lista, ami arra kell, hogy egy mező szomszédait összegyűjt
+     */
     private ArrayList<Mezo> temp_szomszedok;
 
-    private Babu feherBabu = new Babu("feher");
-    private Babu feketeBabu = new Babu("fekete");
+    /**
+     * A Palya-n jelenleg rajta lévő Babu-k összértéke.
+     */
+    private Integer palyaErteke;
 
-    private Integer palyaErteke = 0;
+    /**
+     * Automatkus döntetlening hátra lévő körök száma.
+     */
     private Integer korDontetlenig = 25;
 
     /**
-     * Csak szerializás miatt
+     * A jelenlegi játékos színe, csak szerializáskor változik.
      */
     private String jelenlegiJatekos;
     /**
-     * Csak szerializás miatt
+     * A kiválasztott bábu, csak szerializáskor változik.
      */
     private Babu kivalasztottBabu;
 
-
+    /**
+     * A Palya konstruktora
+     */
     public Palya() {
 
+        Babu feherBabu;
+        Babu feketeBabu;
         for (int SOR = 1; SOR <= 7; SOR += 2) {
             for (int OSZLOP = 1; OSZLOP <= 7; OSZLOP += 2) {
                 Mezo uj_mezo = new Mezo(SOR, OSZLOP);
@@ -95,6 +102,10 @@ public class Palya implements Serializable {
         palyaErteke = palyanLevoBabukErteke();
     }
 
+    /**
+     * Összeeadja a Palya-n jelenleg rajta lévő Babu-k értékét.
+     * @return a Palya-n jelenleg rajta lévő Babu-k összértéke.
+     */
     public int palyanLevoBabukErteke(){
         int ertek = 0;
         for(Mezo m: mezok){
@@ -104,6 +115,10 @@ public class Palya implements Serializable {
         return ertek;
     }
 
+    /**
+     * Leellenőrzi, hogy valamelyik színű játékos nyert-e (a másik színnek nincs már Babu-ja).
+     * @return a nyertes játékos színe vagy null, ha nem nyert senki
+     */
     public String nyertEValaki(){
         Boolean vanEFeherBabu = false;
         Boolean vanEFeketeBabu = false;
@@ -126,20 +141,29 @@ public class Palya implements Serializable {
 
     }
 
-
+    /**
+     * Megadja ,hogy egy mezőtől viszonyítva valamennyi sorral és oszloppal arrébb lévő mező üres-e
+     * @param jelenlegiMezo viszonyításhoz használt mező
+     * @param sor arrébb lévő sor szám
+     * @param oszlop arrébb lévő oszlop szám
+     * @return true, ha üres  false, ha nem.
+     */
     private boolean arrebbLevoMezoUresE(Mezo jelenlegiMezo, int sor, int oszlop){
         Mezo vizsgaltMezo = null;
         for(Mezo mezo: mezok){
             if(mezo.getSor() == (jelenlegiMezo.getSor()+sor) && mezo.getOszlop() == (jelenlegiMezo.getOszlop())+oszlop)
                 vizsgaltMezo = mezo;
         }
-        if(vizsgaltMezo != null && vizsgaltMezo.getBabu() == null)
-            return true;
-        else
-            return false;
+        return (vizsgaltMezo != null && vizsgaltMezo.getBabu() == null);
 
     }
 
+    /**
+     * Megadja, hogy két mező közötti összes mező üres-e vagy sem.
+     * @param jelenlegiMezo egyik mező
+     * @param celMezo másik mező
+     * @return true, ha az összes üres, false, ha nem
+     */
     public boolean szabadEAzUt(Mezo jelenlegiMezo,Mezo celMezo){
         int sorTav = celMezo.getSor() - jelenlegiMezo.getSor();
         int oszlopTav = celMezo.getOszlop() - jelenlegiMezo.getOszlop();
@@ -200,39 +224,64 @@ public class Palya implements Serializable {
     }
 
 
+
+    /**
+     * mezok Getter-e
+     * @return mezok tagváltozó
+     */
     public ArrayList<Mezo> getMezok() {
         return mezok;
     }
 
-    public void setPalyaErteke(Integer palyaErteke) {
-        this.palyaErteke = palyaErteke;
-    }
-
+    /**
+     * palyaErteke Getter-e
+     * @return palyaErteke tagváltozó
+     */
     public Integer getPalyaErteke() {
         return palyaErteke;
     }
 
+    /**
+     * korDontetlenig Setter-e
+     * @param korDontetlenig ezt kapja értekül kap a korDontetlenig tagváltozó
+     */
     public void setKorDontetlenig(Integer korDontetlenig) {
         this.korDontetlenig = korDontetlenig;
     }
-
+    /**
+     * korDontetlenig Getter-e
+     * @return korDontetlenig tagváltozó
+     */
     public Integer getKorDontetlenig() {
         return korDontetlenig;
     }
 
+    /**
+     * jelenlegiJatekos Setter-e
+     * @param jelenlegiJatekos ezt kapja értekül kap a jelenlegiJatekos tagváltozó
+     */
     public void setJelenlegiJatekos(String jelenlegiJatekos) {
         this.jelenlegiJatekos = jelenlegiJatekos;
     }
-
+    /**
+     * jelenlegiJatekos Getter-e
+     * @return jelenlegiJatekos tagváltozó
+     */
     public String getJelenlegiJatekos() {
         return jelenlegiJatekos;
     }
 
-
+    /**
+     * kivalasztottBabu Setter-e
+     * @param kivalasztottBabu ezt kapja értekül kap a kivalasztottBabu tagváltozó
+     */
     public void setKivalasztottBabu(Babu kivalasztottBabu) {
         this.kivalasztottBabu = kivalasztottBabu;
     }
-
+    /**
+     * kivalasztottBabu Getter-e
+     * @return kivalasztottBabu tagváltozó
+     */
     public Babu getKivalasztottBabu() {
         return kivalasztottBabu;
     }

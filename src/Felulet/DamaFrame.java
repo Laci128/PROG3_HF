@@ -10,13 +10,29 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * A teljes Dáma játék kerete
+ * A teljes dámajáték kerete, maga a dáma megjelenítése.
  */
 public class DamaFrame extends JFrame {
+    /**
+     * A 8x8-as pálya közvetlen grafikus megjelenítése, a DamaFrame-en belül
+     */
     private TablaPanel tabla;
+
+    /**
+     * JLabel, ami mindig a jelenleg soron lévő játékos színét írja ki.
+     * A TablaPanel-től kapja meg konstruktorban.
+     */
     private JLabel jelenlegiJatekosLabel;
+
+    /**
+     * ArrayList amiben, benne van a jelenleg döntetlenben kiegyezni akaró játékosok színe.
+     */
     private ArrayList<String> dontetlentSzeretne = new ArrayList<String>();
 
+    /**
+     * A DamaFrame konstruktora
+     * @param betoltottPalya Palya, ami továbbadódik paraméterként a TablaPanelnek
+     */
     public DamaFrame(Palya betoltottPalya){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Dáma");
@@ -83,7 +99,9 @@ public class DamaFrame extends JFrame {
     }
 
 
-
+    /**
+     * A jelenlegi pályát menti el, szerializálja.
+     */
     public void palyaMentese() {
         try{
             FileOutputStream f = new FileOutputStream("palya.txt");
@@ -103,28 +121,42 @@ public class DamaFrame extends JFrame {
 
     }
 
+    /**
+     * Hozzáadja a jelenlegi játékos színét a dontetlentSzeretne listához
+     * @return Igazat ad vissza, ha mindkét játékos színe benne van már.
+     */
     public Boolean dontetlenHozzaad(){
         if(!dontetlentSzeretne.contains(jelenlegiJatekosLabel.getText()))
             dontetlentSzeretne.add(jelenlegiJatekosLabel.getText());
+        else
+            dontetlentSzeretne.remove(jelenlegiJatekosLabel.getText());
 
         return dontetlentSzeretne.contains("feher") && dontetlentSzeretne.contains("fekete");
     }
 
 
-
+    /**
+     * ActionListener mentéshez. Lementi a jelentlegi pályát.
+     * "Játékállás mentése" gombhoz van hozzáadva.
+     * Bezárja a dámát és létrehoz egy új menüt.
+     */
     private class mentesGombListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             palyaMentese();
-            setVisible(false);
+            dispose();
             MenuFrame menuFrame = new MenuFrame();
             menuFrame.setVisible(true);
         }
     }
 
 
-
+    /**
+     * ActionListener döntetlenben való kiegyezéshez. Meghívja a dontetlenHozzaad függvényt.
+     * "Kiegyezés döntetlenben" gombhoz van hozzáadva.
+     * Ha az igazat ad vissza akkor egy Message ablakban kiírja, hogy a játéknak vége és az okát.
+     */
     private class dontetlenGombListener implements ActionListener{
 
         @Override

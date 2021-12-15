@@ -10,18 +10,36 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-
 /**
- * Magának a játéktáblának a panele
+ * A pálya közvetlen grafikus megjelenítése
+ * Magának a játéktáblának a panele,
+ * amin belül 8x8 panel van, az egyes Mezőknek.
  */
 public class TablaPanel extends JPanel {
-
+    /**
+     * A pálya aminek a megjelenítése a TablaPanel
+     */
     private Palya palya;
 
+    /**
+     * A jelenleg kiválasztott bábu
+     */
     private Babu kivalasztottBabu;
+
+    /**
+     * A jelenlegi játékos színét kiíró JLabel, ezt adja át a DamaFrame-nek
+     */
     private JLabel jelenlegiJatekosLabel = new JLabel("feher");
+
+    /**
+     * A default White Color-tól eltérő árnyalatú fehér szín, ilyen színűek a mezők.
+     */
     private Color Feher = new Color(245, 245, 245);
 
+    /**
+     * A TablaPanel konstruktora
+     * @param betoltottPalya a palya tagváltozót ezzel teszi egyenlővé, ha nem null, egyébként új objektum lesz a palya
+     */
     TablaPanel(Palya betoltottPalya) {
         setLayout(new GridLayout(8, 8));
         setBounds(300,20,800,800);
@@ -73,6 +91,9 @@ public class TablaPanel extends JPanel {
         }
     }
 
+    /**
+     * Passz függvény ami a jelenlegiJatekosLabel szövegét változtatja és null-ra álíltja a kivalasztottBabu-t.
+     */
     public void passz(){
         if(jelenlegiJatekosLabel.getText().equals("feher")){
             jelenlegiJatekosLabel.setText("fekete");
@@ -85,10 +106,18 @@ public class TablaPanel extends JPanel {
         }
     }
 
+    /**
+     * Azért van, hogy a DamaFrame "Passz" gombjához hozzá tudjak adni egy passzGombListener-t
+     * @return egy új passzGombListener
+     */
     public passzGombListener passzGombListenerAdo() {
         return new passzGombListener();
     }
 
+    /**
+     * Meghívja kivalasztottBabu JelenlegiMezo-éjre a KiralyLeszE függvényt és grafikusan update-el, ha szükséges.
+     * @return true-t ad vissza, ha Kiraly lett a Babubol, egyébként false-t
+     */
     private boolean KiralyLeszEFelulet(){
         Babu temp = kivalasztottBabu.getJelenlegiMezo().KiralyLeszE();
         if(temp != null){
@@ -103,7 +132,11 @@ public class TablaPanel extends JPanel {
         return false;
     }
 
-
+    /**
+     * Grafikailag áthelyezi a kivalaszottBabu-t egy Mezőről, egy másikra
+     * @param jelenlegiM erről a Mezőről helyezi át
+     * @param celM erre a Mezőre helyezi át
+     */
     private void babutAthelyez(Mezo jelenlegiM, Mezo celM){
         jelenlegiM.getMezoPanel().setBackground(Feher);
         jelenlegiM.getMezoPanel().remove(kivalasztottBabu.getBabuLabel());
@@ -113,7 +146,10 @@ public class TablaPanel extends JPanel {
         celM.getMezoPanel().add(kivalasztottBabu.getBabuLabel());
     }
 
-
+    /**
+     * Ellenőrzi, hogy a pálya jelenállása szerint vége van-e a játéknak, nyert-e valaki, vagy döntetlen alakult-e ki.
+     * Ha vége van akkor azt egy Message ablakkal jelzi, a megfelelő indokot kiírva.
+     */
     public void jatekVege(){
         //Valamelyik szín nyert
         if(palya.nyertEValaki() != null)
@@ -138,7 +174,10 @@ public class TablaPanel extends JPanel {
                     JOptionPane.PLAIN_MESSAGE);
     }
 
-
+    /**
+     * ActionListener, a DamaFrame-ben lévő "Passz" gombhoz van hozzáadva.
+     * Meghívja a passz függvényt és a jatekVege függvényt
+     */
     private class passzGombListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -147,7 +186,12 @@ public class TablaPanel extends JPanel {
         }
     }
 
-
+    /**
+     * MouseListener, minden mezőn lévő bábu label-éhez hozzá van adva.
+     * A mouseCliked függvényen kívül a többi függvénye nem csinál semmit.
+     * Egy bábut tartalmazó mezőre kattintva kiválasztja, ha lehet és kivalasztottBabu-nak értékül adja.
+     * és ciánkékkel megjelöli a mezőt.
+     */
     private class egerLabelListener implements MouseListener {
 
         @Override
@@ -199,6 +243,12 @@ public class TablaPanel extends JPanel {
         public void mouseExited(MouseEvent e) {}
     }
 
+    /**
+     * MouseListener, minden mezőn lévő blabel-höz (BabuLabel-höz) hozzá van adva.
+     * A mouseCliked függvényen kívül a többi függvénye nem csinál semmit.
+     * Egy üres mezőre kattintva, ha lehet oda lép vagy ugrik a kivalasztottBabu, vagy nem történik semmi.
+     * Adott esetekben meghívódik a passz és a játékVége függvény is.
+     */
     private class egerPanelListener implements MouseListener {
 
         @Override
@@ -301,26 +351,39 @@ public class TablaPanel extends JPanel {
     }
 
 
+
+    /**
+     * palya Setter-e
+     * @param palya ezt kapja értekül kap a palya tagváltozó
+     */
     public void setPalya(Palya palya) {
         this.palya = palya;
     }
 
+    /**
+     * palya Getter-e
+     * @return palya tagváltozó
+     */
     public Palya getPalya() {
         return palya;
     }
 
-    public void setJelenlegiJatekosLabel(JLabel jelenlegiJatekos) {
-        this.jelenlegiJatekosLabel = jelenlegiJatekos;
-    }
 
+
+    /**
+     * jelenlegiJatekosLabel Getter-e
+     * @return jelenlegiJatekosLabel tagváltozó
+     */
     public JLabel getJelenlegiJatekosLabel() {
         return jelenlegiJatekosLabel;
     }
 
-    public void setKivalasztottBabuTabla(Babu kivalasztottBabu) {
-        this.kivalasztottBabu = kivalasztottBabu;
-    }
 
+
+    /**
+     * kivalasztottBabu Getter-e
+     * @return kivalasztottBabu0 tagváltozó
+     */
     public Babu getKivalasztottBabuTabla() {
         return kivalasztottBabu;
     }
