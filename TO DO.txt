@@ -5,14 +5,9 @@
 *********MUKODES*********
 
 
--JUNIT TESZTEK !!!!!!!!!!!!
-
-
-
-
 *********DOKUMENTÁCIÓHOZ / SPECIFIKÁCIÓ MÓDOSÍTÁS*********
 
-JAVADOC KOMMENTEK !!!!!!!!!!!!
+JAVADOC KOMMENTEK!!!!!!!!!!!!
 
 OSZTÁLYDIAGRAM!!!!!!!!!!!!!!!!
 
