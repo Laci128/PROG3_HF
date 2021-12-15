@@ -11,14 +11,14 @@ public class MezoTesztek {
     int mezoszam;
 
     @Before
-    public void MezoInit(){
+    public void mezoInit(){
         palya = new Palya();
         for (Mezo m: palya.getMezok())
             m.setBabu(null);
     }
 
     @Test
-    public void MezoSorszam(){
+    public void mezoSorszam(){
         mezo = new Mezo(1,1);
 
         mezoszam = 1;
@@ -28,7 +28,7 @@ public class MezoTesztek {
     }
 
     @Test
-    public void KiralyLeszEAtalakit(){
+    public void kiralyLeszEAtalakit(){
         mezoszam = 1;
         for (Mezo m: palya.getMezok()) {
             if (m.Mezoszam() == mezoszam) {
@@ -47,7 +47,7 @@ public class MezoTesztek {
     }
 
     @Test
-    public void KiralyLeszENemAlakitAt(){
+    public void kiralyLeszENemAlakitAt(){
         mezoszam = 1;
         for (Mezo m: palya.getMezok()) {
             if (m.Mezoszam() == mezoszam) {

@@ -127,7 +127,7 @@ public class Palya implements Serializable {
     }
 
 
-    private boolean uresE(Mezo jelenlegiMezo, int sor, int oszlop){
+    private boolean arrebbLevoMezoUresE(Mezo jelenlegiMezo, int sor, int oszlop){
         Mezo vizsgaltMezo = null;
         for(Mezo mezo: mezok){
             if(mezo.getSor() == (jelenlegiMezo.getSor()+sor) && mezo.getOszlop() == (jelenlegiMezo.getOszlop())+oszlop)
@@ -149,7 +149,7 @@ public class Palya implements Serializable {
             int sor = 1;
             int oszlop = 1;
             while (sor < sorTav && oszlop < oszlopTav) {
-                if (!uresE(jelenlegiMezo, sor, oszlop))
+                if (!arrebbLevoMezoUresE(jelenlegiMezo, sor, oszlop))
                     return false;
                 oszlop++;
                 sor++;
@@ -162,7 +162,7 @@ public class Palya implements Serializable {
             int sor = 1;
             int oszlop = -1;
             while (sor < sorTav && oszlop > oszlopTav) {
-                if (!uresE(jelenlegiMezo, sor, oszlop))
+                if (!arrebbLevoMezoUresE(jelenlegiMezo, sor, oszlop))
                     return false;
                 oszlop--;
                 sor++;
@@ -175,7 +175,7 @@ public class Palya implements Serializable {
             int sor = -1;
             int oszlop = 1;
             while (sor > sorTav && oszlop < oszlopTav) {
-                if (!uresE(jelenlegiMezo, sor, oszlop))
+                if (!arrebbLevoMezoUresE(jelenlegiMezo, sor, oszlop))
                     return false;
                 oszlop++;
                 sor--;
@@ -188,7 +188,7 @@ public class Palya implements Serializable {
             int sor = -1;
             int oszlop = -1;
             while (sor > sorTav && oszlop > oszlopTav) {
-                if (!uresE(jelenlegiMezo, sor, oszlop))
+                if (!arrebbLevoMezoUresE(jelenlegiMezo, sor, oszlop))
                     return false;
                 oszlop--;
                 sor--;
