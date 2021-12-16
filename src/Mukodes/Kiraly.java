@@ -177,5 +177,65 @@ public class Kiraly extends Babu {
         this.palya = palya;
     }
 
+    /**
+     * jelenlegiMezo Setter-e
+     * @param jelenlegiMezo ezt kapja értekül kap a jelenlegiMezo tagváltozó
+     */
+    @Override
+    public void setJelenlegiMezo(Mezo jelenlegiMezo) {
+        this.jelenlegiMezo = jelenlegiMezo;
+    }
+    /**
+     * jelenlegiMezo Getter-e
+     * @return jelenlegiMezo tagváltozó
+     */
+    @Override
+    public Mezo getJelenlegiMezo() {
+        return jelenlegiMezo;
+    }
+
+    /**
+     * babuLabel Getter-e
+     * @return babuLabel tagváltozó
+     */
+    @Override
+    public JLabel getBabuLabel() {
+        return babuLabel;
+    }
+
+    /**
+     * szin Setter-e
+     * @param szin ezt kapja értekül kap a szin tagváltozó
+     */
+    @Override
+    public void setSzin(String szin) {
+        this.szin = szin;
+    }
+    /**
+     * szin Getter-e
+     * @return szin tagváltozó
+     */
+    @Override
+    public String getSzin() {
+        return szin;
+    }
+
+
+    /**
+     * ugrott Setter-e
+     * @param ugrott ezt kapja értekül kap az ugrott tagváltozó
+     */
+    @Override
+    public void setUgrott(Boolean ugrott) {
+        this.ugrott = ugrott;
+    }
+    /**
+     * ugrott Getter-e
+     * @return ugrott tagváltozó
+     */
+    @Override
+    public Boolean getUgrott() {
+        return ugrott;
+    }
 
 }
